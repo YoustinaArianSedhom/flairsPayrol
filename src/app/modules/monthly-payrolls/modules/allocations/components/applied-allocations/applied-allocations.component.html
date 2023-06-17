@@ -1,0 +1,13 @@
+<app-form-modal>
+    <ng-container>
+        <h2 mat-dialog-title>Applied Allocations</h2>
+        <mat-dialog-content class="mat-typography">
+            <app-table-wrapper [records$]="uploadedAllocations$" [config]="tableConfig" [classes]="'scroll'">
+            </app-table-wrapper>
+        </mat-dialog-content>
+        <mat-dialog-actions align="end">
+            <!-- <button mat-button mat-dialog-close class="cancelBtn rounded-none" (click)="deleteAllocation()">Delete</button> -->
+            <button mat-button cdkFocusInitial mat-dialog-close class="actionBtn rounded-none"> Close </button>
+        </mat-dialog-actions>
+    </ng-container>
+</app-form-modal>

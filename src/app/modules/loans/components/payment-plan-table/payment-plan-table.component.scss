@@ -1,0 +1,10 @@
+:host ::ng-deep{
+    mat-table.mat-table {
+        background: var(--primaryAlt);
+        max-height: 25vh !important;
+    }
+}
+
+.end-plan-date {
+    margin: 1.25rem;
+}

@@ -1,0 +1,94 @@
+<app-inner-page-layout>
+
+  <h1>{{managerName}}'s Team Payslips</h1>
+  <div class="p-4 bg-white lg:w-3/4">
+    <div class="lg:flex gap-5">
+      <div class="lg:w-1/2 flex mb-2">
+        <div class="w-1/2"><label>Total Gross Salaries</label></div>
+        <div class="w-1/2"><b>{{teamPayslipsAggregates.totalGrossSalary | currency: "":"":"1.0"}}</b></div>
+      </div>
+      <div class="lg:w-1/2 flex mb-2">
+        <div class="w-1/2"><label>Total Additions</label></div>
+        <div class="w-1/2"><b>{{teamPayslipsAggregates.totalAdditions | currency: "":"":"1.0"}}</b></div>
+      </div>
+    </div>
+
+    <div class="lg:flex gap-5">
+      <div class="lg:w-1/2 flex mb-2">
+        <div class="w-1/2"><label>Total Net Salaries</label></div>
+        <div class="w-1/2"><b>{{teamPayslipsAggregates.totalNetSalary | currency: "":"":"1.0"}}</b></div>
+      </div>
+      <div class="lg:w-1/2 flex mb-2">
+        <div class="w-1/2"><label>Total Global Deductions</label></div>
+        <div class="w-1/2"><b>{{teamPayslipsAggregates.totalGlobalDeductions | currency: "":"":"1.0"}}</b></div>
+      </div>
+    </div>
+
+    <div class="lg:flex gap-5">
+      <div class="lg:w-1/2 flex mb-2">
+        <div class="w-1/2"><label>Total Paid</label></div>
+        <div class="w-1/2"><b>{{teamPayslipsAggregates.totalPaid | currency: "":"":"1.0"}}</b></div>
+
+      </div>
+      <div class="lg:w-1/2 flex mb-2">
+        <div class="w-1/2"><label>Total Deductions</label></div>
+        <div class="w-1/2"><b>{{teamPayslipsAggregates.totalDeductions | currency: "":"":"1.0"}}</b></div>
+      </div>
+    </div>
+
+    <div class="lg:flex gap-5">
+      <div class="lg:w-1/2 flex">
+        <div class="w-1/2"><label>Total Global Additions</label></div>
+        <div class="w-1/2"><b>{{teamPayslipsAggregates.totalGlobalAdditions | currency: "":"":"1.0"}}</b></div>
+      </div>
+      <div class="lg:w-1/2 flex">
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full py-4">
+    <div class="text-right"><button mat-button mat-flat-button class="actionBtn rounded-none col-span-2 mt-3 lg:mt-0"
+        (click)="exportMyTeamsPayslips()">Export</button>
+    </div>
+  </div>
+
+  <div class="w-full">
+    <div class="md:flex md:justify-between md:items-center bg-white px-5 pt-2 pb-3 mb-7 filterBox sm:flex-wrap">
+      <div class="flex  md:flex-row md:justify-between md:items-center flex-col flex-grow  px-3">
+        <div class="flex items-center md:w-1/2">
+          <mat-icon class="text-gray-400">filter_alt</mat-icon>
+          <app-search-input class="flex-grow filterBox-search" placeholder="Search using name or email"
+            (searchChange)="fireSearchTeamPayslips($event)" [search]="searchQuery" [withResult]="false">
+          </app-search-input>
+        </div>
+        <div *ngIf="isPL" class="pl-9 md:pl-0 mb-5">
+          <app-basic-select [withLabel]="true" (selectionChange)="onManagerChange($event)" class="flex-50" [config]="{
+            placeholder: 'Filter using manager',
+            options: managersWithSubRoles,
+            value: payslipsFiltration.managerId
+          }">
+          </app-basic-select>
+        </div>
+
+
+      </div>
+      <div class="date-with-label float-left">
+        <label for="dateField">From - To</label>
+        <!-- Filters Wrapper -->
+        <div class="flex md:flex-nowrap flex-wrap justify-md-end items-baseline dateField">
+          <ngx-month-picker mode="range" locale="en" [firstYear]="2000" [value]="range" [showResetBtn]="false"
+            (monthRangeSelected)="onFilterChange($event)">
+          </ngx-month-picker>
+        </div>
+      </div>
+
+      <button (click)="resetFilter()" mat-button color="warn" aria-label="Clear Filter">
+        Clear
+      </button>
+    </div>
+  </div>
+  <div class="innerWrapper bg-white w-full p-1 lg:p-5 mt-5">
+    <app-table-payslip [mode]="mode"></app-table-payslip>
+
+  </div>
+</app-inner-page-layout>

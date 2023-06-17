@@ -1,0 +1,103 @@
+<app-form-modal>
+    <ng-container>
+        <h2 mat-dialog-title>{{isUpdate ? 'Update ' : 'Add new '}}{{isAddition ? 'addition' : 'deduction'}}</h2>
+        <h5 *ngIf="isUpdate">By editing this {{isAddition ? 'addition' : 'deduction'}}, it will reflect on this monthly payroll only</h5>
+        <mat-dialog-content class="mat-typography">
+<form [formGroup]="additionDeductionForm">  
+    
+    <!-- <div class="col-span-2 text-center lg:text-right mt-5 lg:mt-0">
+        <mat-radio-group aria-label="Select an option" value="0" (change)="modeChanged($event)">
+            <mat-radio-button value="0" class="mr-2">Addition</mat-radio-button>
+            <mat-radio-button value="1" class="ml-2">Deduction</mat-radio-button>
+        </mat-radio-group>
+    </div> -->
+    
+    <!--! Additions dropdown -->
+    <mat-form-field appearance="" class="w-full mb-3" *ngIf="isAddition && !isUpdate" [ngClass]="{'disabled': isUpdate}">
+        <mat-label>Addition Name</mat-label>
+        <mat-select formControlName="additionTypeId" (selectionChange)="selectedType($event)">
+          <mat-option *ngFor="let record of additionTypes" [value]="record.id">{{record.name}}</mat-option>
+            <!-- <mat-option [value]=0>Egypt</mat-option> -->
+        </mat-select>
+        <mat-error>
+            <app-validation-error [control]="additionDeductionForm.get('additionTypeId')" businessName="Addition Name">
+            </app-validation-error>
+        </mat-error>
+    </mat-form-field>
+
+    <!--! Deduction dropdown -->
+    <mat-form-field appearance="" class="w-full mb-3" *ngIf="!isAddition && !isUpdate" [ngClass]="{'disabled': isUpdate}">
+        <mat-label>Deduction Name</mat-label>
+        <mat-select formControlName="deductionTypeId" (selectionChange)="selectedType($event)">
+          <mat-option *ngFor="let record of deductionTypes" [value]="record.id">{{record.name}}</mat-option>
+            <!-- <mat-option [value]=0>Egypt</mat-option> -->
+        </mat-select>
+        <mat-error>
+            <app-validation-error [control]="additionDeductionForm.get('deductionTypeId')" businessName="Deduction Name">
+            </app-validation-error>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="" class="w-full mb-3" >
+        <mat-label>Amount</mat-label>
+        <input type="number" (keydown)="positiveOnly($event)" formControlName="value" min="0" step="50" placeholder="Amount" required matInput>
+        <mat-error>
+            <app-validation-error [control]="additionDeductionForm.get('value')" businessName="Amount">
+            </app-validation-error>
+        </mat-error>
+    </mat-form-field>
+
+    <div class="w-full grid grid-cols-2 gap-3" [ngClass]="{'disabled': isUpdate}" *ngIf="!isUpdate">
+        <mat-form-field appearance="" class="col-span-1">
+            <mat-label>From</mat-label>
+            <input matInput [matDatepicker]="from" formControlName="from" [min]="minDate" readonly>
+            <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
+            <mat-datepicker #from
+            startView="year"
+            (yearSelected)="chosenYearHandler($event, from)"
+            (monthSelected)="chosenMonthHandler($event, from)"
+            panelClass="fromDate">
+            </mat-datepicker>
+        </mat-form-field>
+        
+        <mat-form-field appearance="" class="col-span-1">
+            <mat-label>To</mat-label>
+            <input matInput [matDatepicker]="to" formControlName="to" [min]="minDate" readonly>
+            <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
+            <mat-datepicker #to
+            startView="year"
+            (yearSelected)="chosenYearHandler($event, to)"
+            (monthSelected)="chosenMonthHandler($event, to)"
+            panelClass="toDate">
+            </mat-datepicker>
+        </mat-form-field>
+    </div>
+
+    <mat-error *ngIf="additionDeductionForm.errors?.rangeError">
+        {{additionDeductionForm.errors?.rangeError}}
+    </mat-error>
+
+    <mat-form-field appearance="" class="w-full">
+        <mat-label>Leave a note</mat-label>
+        <textarea matInput placeholder="Leave a note..." formControlName="notes"></textarea>
+    </mat-form-field>
+
+    
+</form>
+
+<!-- {{ additionDeductionForm.value | json}}
+{{ _additionDeduction | json}} -->
+
+<!-- <mat-error class="w-full py-5 flex justify-center text-center" *ngIf="backendError">
+    {{backendError.errorMessage}}
+</mat-error> -->
+
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close class="cancelBtn rounded-none">Cancel</button>
+    <button mat-button cdkFocusInitial [disabled]="additionDeductionForm.invalid" class="actionBtn rounded-none" (click)="submit()"> {{isUpdate ? 'Update ' : 'Add'}} </button>
+</mat-dialog-actions>
+</ng-container>
+</app-form-modal>

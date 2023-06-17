@@ -1,0 +1,18 @@
+<ng-container *ngIf="records; else noResult">
+
+    <app-table-wrapper
+    [records$]="records"
+    [config]="tableConfig"
+    (actionTaken)="mapTableAction($event)">
+    </app-table-wrapper>
+
+    <!-- Pagination -->
+    <!-- <app-pagination [config]="pagination$ | async" (paginationChange)="paginate($event)">
+    </app-pagination> -->
+
+</ng-container>
+<!-- {{records | json}} -->
+
+<ng-template #noResult>
+    <app-no-result></app-no-result>
+</ng-template>

@@ -1,0 +1,17 @@
+<app-inner-page-layout>
+    <ng-container *ngIf="employee">
+        <div>
+            <h1 class="flex items-center"><button class="mr-3" (click)="navigateBack()"><mat-icon class="text-2xl">arrow_back_ios</mat-icon></button>{{employee.name}}'s Profile</h1>
+            <div class="bg-white w-full p-2 lg:p-5">
+                <!-- <div class=" flex items-center justify-end">
+                    <button mat-flat-button class="actionBtn rounded-none" (click)="openBankInfoForm()">update bank info</button>
+                </div> -->
+                <app-personal-info [employee]="employee" (rolesEdit)="openRolesForm()"></app-personal-info>
+                <!-- {{employee$ | async | json}} -->
+
+                <app-table-employee-history *ngIf="permissions.VIEW_WORKFLOW_HISTORY"></app-table-employee-history>
+            </div>
+        </div>
+       
+    </ng-container>
+</app-inner-page-layout>

@@ -1,0 +1,17 @@
+<app-inner-page-layout>
+    <ng-container>
+        <div>
+            <h1>{{pageTitle}}</h1>
+            <div class=" innerWrapper bg-white w-full p-1 lg:p-5 mt-5">
+                <div class=" lg:flex justify-end grid grid-cols-2 items-center ">
+                    <!-- <app-search-input (searchChange)="search($event)" [search]="searchQuery" class="col-span-2"></app-search-input> -->
+                    <button mat-button mat-flat-button class="actionBtn rounded-none col-span-2 mt-3 lg:mt-0 addition" (click)="addNewGlobalAddition()" *ngIf="!showForm">Add Global Addition</button>
+                    <button mat-button mat-flat-button class="actionBtn rounded-none col-span-2 mt-3 lg:mt-0" (click)="addNewGlobalDeduction()">{{!showForm ? 'Add Global Deduction' : 'Close'}}</button>
+                </div>
+                <app-global-deduction-form class="bg-accent p-5 block m-auto mr-0 lg:w-1/2 xl:w-1/4" *ngIf="showForm"></app-global-deduction-form>
+                <!-- <app-global-deduction-table></app-global-deduction-table> -->
+                <app-global-additions-deductions-table></app-global-additions-deductions-table>
+            </div>
+        </div>
+    </ng-container>
+</app-inner-page-layout>

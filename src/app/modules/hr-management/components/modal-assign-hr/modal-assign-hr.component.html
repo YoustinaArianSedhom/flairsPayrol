@@ -1,0 +1,66 @@
+<app-form-modal>
+  <h1 mat-dialog-title>Assign HR Business Partner to a team</h1>
+
+  <mat-dialog-content>
+
+    <form class="mt-5" [formGroup]="assignHrForm">
+
+
+      <div class="form-group mb-4 w-full">
+
+
+        <div class="mb-4">
+
+
+          <mat-form-field class="w-full">
+
+
+            <mat-label>HR Name</mat-label>
+            <input readonly type="text" aria-label="Text" matInput formControlName="hrName" autocomplete="off"
+              type="text" matAutosize />
+
+          </mat-form-field>
+        </div>
+
+
+        <div class="mb-4">
+
+
+          <mat-form-field class="w-full">
+
+
+            <mat-label>Team Name</mat-label>
+            <input type="text" placeholder="type team name or manager name" aria-label="text" matInput formControlName="teamName"
+              [matAutocomplete]="autoTeam" required />
+            <mat-autocomplete #autoTeam="matAutocomplete" [displayWith]="displayFunction"
+              (optionSelected)="setTeam($event.option.value)">
+              <mat-option class="managerName" *ngFor="let option of filteredTeams" [value]="option">
+                {{ option.name }}
+                <span class="block text-sm text-gray-500">Manager Name: {{option.manager.name}}</span>
+              </mat-option>
+            </mat-autocomplete>
+            <button type="button" mat-button *ngIf="formControls.teamId.value" matSuffix mat-icon-button
+              aria-label="Clear" (click)="clearTeam()">
+              <mat-icon>close</mat-icon>
+            </button>
+
+            <mat-error>
+              <app-validation-error businessName="Team Name" [control]="formControls.teamName"></app-validation-error>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button cdkFocusInitial mat-dialog-close class="cancelBtn rounded-none">
+      Cancel
+    </button>
+    <button mat-button (click)="submitAssignHrForm(assignHrForm.value)" [disabled]="assignHrForm.invalid"
+      class="actionBtn rounded-none">
+      Save
+    </button>
+  </mat-dialog-actions>
+</app-form-modal>

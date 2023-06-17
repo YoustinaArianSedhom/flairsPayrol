@@ -1,0 +1,193 @@
+<div class="actions-wrapper">
+    <!-- Actions Menu trigger -->
+    <button mat-icon-button [matMenuTriggerFor]="actionsMenu" aria-label="Table Actions Menu">
+        <mat-icon class="icon" style="font-size: 30px !important;" class="text-xl">more_vert</mat-icon>
+    </button>
+
+
+
+
+    <!-- Actions Menu -->
+    <mat-menu #actionsMenu="matMenu">
+
+        <!-- Loyalty Bonus -->
+        <button mat-menu-item [mat-menu-trigger-for]="loyaltyBonusMenu" [disabled]="summary.status > 0">
+            <mat-icon class="mr-2" svgIcon="loyalty_bonus"></mat-icon>
+            Loyalty Bonus
+        </button>
+        <!--Loyalty Bonus Actions Menu -->
+        <mat-menu #loyaltyBonusMenu="matMenu">
+             <!-- Insert from payroll -->
+            <button mat-menu-item (click)="insertLoyaltyBonusFromPayroll()">
+             <mat-icon class="mr-2" svgIcon="insert"></mat-icon>
+             Insert to payroll ({{countOfProfileShouldApplied}})
+            </button>
+
+             <!-- remove from payroll -->
+            <button mat-menu-item (click)="removeLoyaltyBonusFromPayroll()" [disabled]="currentDate.getDate() >= 13">
+             <mat-icon class="mr-2" svgIcon="remove"></mat-icon>
+             Remove from payroll ({{countOfProfileShouldRemovedFromApplied}})
+            </button>
+             <!-- export to excel -->
+            <button mat-menu-item (click)="exportLoyaltyBonusDetails()">
+            <mat-icon class="mr-2" svgIcon="excel"></mat-icon>
+             Export to Excel
+            </button>
+        </mat-menu>
+
+        <!-- Allocations -->
+        <button mat-menu-item [matMenuTriggerFor]="allocationActionsMenu" [disabled]="summary.status > 0">
+            <mat-icon class="mr-2" svgIcon="excel"></mat-icon>
+            Allocation
+        </button>
+
+        <!--Allocations Actions Menu -->
+        <mat-menu #allocationActionsMenu="matMenu">
+            <!-- view Applied Allocation -->
+            <button mat-menu-item [disabled]="summary.allocationSheetUploaded != true"
+                (click)="viewAppliedAllocation(summary.id)">
+                <mat-icon class="mr-2" svgIcon="view">view</mat-icon>
+                View Applied Allocations
+            </button>
+
+            <!-- Delete Allocation -->
+            <button mat-menu-item
+                [disabled]="!isEntityEditable || summary.status != payrollStatusesEnum.opened || !summary.allocationSheetUploaded"
+                (click)="deleteAllocation()">
+                <mat-icon svgIcon="delete" class="mr-2">Delete</mat-icon>
+                Delete Applied Allocations
+            </button>
+
+            <!-- Import Allocation -->
+            <button mat-menu-item [disabled]="!isEntityEditable || summary.status != payrollStatusesEnum.opened"
+                (click)="importAllocation()">
+                <mat-icon class="mr-2">add</mat-icon>
+                Import New Allocations
+            </button>
+
+        </mat-menu>
+
+        <!-- Additions -->
+        <button mat-menu-item [matMenuTriggerFor]="additionsActionsMenu" [disabled]="summary.status > 0">
+            <mat-icon class="mr-2" svgIcon="excel"></mat-icon>
+            Additions
+        </button>
+
+        <!--Additions Actions Menu -->
+        <mat-menu #additionsActionsMenu="matMenu">
+            <!-- view Applied Additions -->
+            <button mat-menu-item [disabled]="!summary.additionSheetUploaded" (click)="viewAppliedAddition(summary.id)">
+                <mat-icon class="mr-2" svgIcon="view">view</mat-icon>
+                View Applied Additions
+            </button>
+
+            <!-- Delete Addition -->
+            <button mat-menu-item
+                [disabled]="!isEntityEditable || summary.status != payrollStatusesEnum.opened || !summary.additionSheetUploaded"
+                (click)="deleteAddition()">
+                <mat-icon svgIcon="delete" class="mr-2">Delete</mat-icon>
+                Delete Applied Additions
+            </button>
+
+            <!-- Import Additions -->
+            <button mat-menu-item [disabled]="!isEntityEditable || summary.status != payrollStatusesEnum.opened"
+                (click)="importAddition()">
+                <mat-icon class="mr-2">add</mat-icon>
+                Import New Additions
+            </button>
+
+        </mat-menu>
+
+
+          <!-- Deduction -->
+          <button mat-menu-item [matMenuTriggerFor]="deductionActionsMenu" [disabled]="summary.status > 0">
+            <mat-icon class="mr-2" svgIcon="excel"></mat-icon>
+            Deduction
+        </button>
+
+        <!--Deduction Actions Menu -->
+        <mat-menu #deductionActionsMenu="matMenu">
+            <!-- view Applied Deduction -->
+            <button mat-menu-item [disabled]="!summary.deductionSheetUploaded" (click)="viewAppliedDeduction(summary.id)">
+                <mat-icon class="mr-2" svgIcon="view">view</mat-icon>
+                View Applied Deduction
+            </button>
+
+            <!-- Delete Deduction -->
+            <button mat-menu-item
+                [disabled]="!isEntityEditable || summary.status != payrollStatusesEnum.opened || !summary.deductionSheetUploaded"
+                (click)="deleteDeduction()">
+                <mat-icon svgIcon="delete" class="mr-2">Delete</mat-icon>
+                Delete Applied Deduction
+            </button>
+
+            <!-- Import Deduction -->
+            <button mat-menu-item [disabled]="!isEntityEditable || summary.status != payrollStatusesEnum.opened"
+                (click)="importDeduction()">
+                <mat-icon class="mr-2">add</mat-icon>
+                Import New Deduction
+            </button>
+
+        </mat-menu>
+
+
+        <!-- Publish Monthly Payroll -->
+        <button mat-menu-item (click)="onPublishPayroll()" [disabled]="summary?.status != payrollStatusesEnum.closed">
+            <mat-icon class="mr-2">publish</mat-icon>
+            Publish
+        </button>
+
+        <!-- Transfer Monthly Payroll -->
+        <button mat-menu-item (click)="onTransferPayroll()" [disabled]="!summary?.isPayrollModifiedAfterPublish">
+            <mat-icon class="mr-2">paid</mat-icon>
+            Transfer
+        </button>
+
+
+        <!-- Export Monthly Payroll -->
+        <button mat-menu-item [disabled]="summary.status == payrollStatusesEnum.opened"
+            [matMenuTriggerFor]="excelSheetTypesMenu">
+            <mat-icon class="mr-2" svgIcon="excel"></mat-icon>
+            Export to Excel
+        </button>
+
+
+
+        <!-- Send Payroll Notification -->
+        <button mat-menu-item [disabled]="summary.status != payrollStatusesEnum.published"
+            [matMenuTriggerFor]="emailNotificationTypesMenu">
+            <mat-icon class="mr-2">email</mat-icon>
+            Send Notifications
+            via email
+        </button>
+
+        <!-- View Monthly payroll -->
+        <button mat-menu-item (click)="openViewMonthlyPayroll()">
+            <mat-icon svgIcon="view" class="mr-2"></mat-icon>
+            View Payroll Summary
+        </button>
+        <!-- Delete Payroll -->
+        <button mat-menu-item (click)="onDeletePayroll()" [disabled]="summary?.status != payrollStatusesEnum.opened">
+            <mat-icon svgIcon="delete" class="mr-2"></mat-icon>
+            Delete
+        </button>
+
+    </mat-menu>
+
+
+    <!-- Excel Sheet Types Menu -->
+    <mat-menu #excelSheetTypesMenu="matMenu">
+        <button *ngFor="let excelSheetType of excelSheetTypes | keyvalue" mat-menu-item
+            (click)="onExportPayroll(excelSheetType.value.value)">
+            {{excelSheetType.value.label }}
+        </button>
+    </mat-menu>
+
+    <!-- Excel Sheet Types Menu -->
+    <mat-menu #emailNotificationTypesMenu="matMenu">
+        <button *ngFor="let emailNotificationType of emailNotificationTypes | keyvalue" mat-menu-item
+            (click)="onMonthlyPayrollSendNotification(emailNotificationType.value.value)">
+            {{emailNotificationType.value.label }}
+        </button>
+    </mat-menu>
+</div>

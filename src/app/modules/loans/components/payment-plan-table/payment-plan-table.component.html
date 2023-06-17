@@ -1,0 +1,5 @@
+<app-table-wrapper [config]='tableConfig' [records$]='paymentPlan$'
+    [classes]="'scroll payment-plan-table'">
+
+</app-table-wrapper>
+<div class="py-5 text-center bg-white end-plan-date font-bold">End Date: {{endInstallmentsDate | date : 'LLLL yyyy'}}</div>

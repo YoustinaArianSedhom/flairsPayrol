@@ -1,0 +1,21 @@
+<app-form-modal>
+   <h2 mat-dialog-title class="text-primary border-b-2 pb-2">LOYALTY BONUS HISTORY</h2>
+   <mat-dialog-content class="mat-typography custom-scrolling">
+
+      <!-- Table Records -->
+      <ng-container *ngIf="(records$ | async)?.length; else noResult" >
+         <!-- Table -->
+         <app-table-wrapper [records$]="records$" [config]="tableConfig">
+         </app-table-wrapper>
+
+      </ng-container>
+
+      <!-- No Result Template -->
+      <ng-template #noResult>
+         <h2 class="text-center pt-5">Sorry, No result, please try again </h2>
+      </ng-template>
+   </mat-dialog-content>
+   <mat-dialog-actions align="end">
+      <button mat-button class="actionBtn rounded-lg font-normal" mat-dialog-close>Cancel</button>
+   </mat-dialog-actions>
+</app-form-modal>

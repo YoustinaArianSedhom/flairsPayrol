@@ -1,0 +1,83 @@
+<div class="w-full lg:flex  gap-5">
+    <div class="infoWrapper flex flex-col mb-3 lg:mb-0 justify-center items-center bg-white w-full lg:w-1/4 p-3">
+    <!-- <div class="fieldGroup block 3xl:flex">
+        <div class="info font-bold mr-2">id : </div>
+        <div class="value">{{ personalInfo.id}}</div>
+    </div> -->
+    <div class="fieldGroup block 3xl:flex ">
+        <!-- <div class="info font-bold mr-2">Full Name : </div> -->
+        <img [src]="personalInfo.profileImageLink ? personalInfo.profileImageLink : 'assets/images/candidate-avatar.svg'" class="rounded-full w-24	max-h-24 mb-2">
+    </div>
+    <div class="fieldGroup block 3xl:flex">
+        <!-- <div class="info font-bold mr-2">Full Name : </div> -->
+        <div class="value text-2xl font-bold mb-2">{{ personalInfo.name ? personalInfo.name : 'No Value' }}</div>
+    </div>
+
+    <div class="fieldGroup block 3xl:flex">
+        <!-- <div class="info font-bold mr-2">Title : </div> -->
+        <div class="value text-xl">{{ personalInfo.title ? personalInfo.title : 'No Value' }}</div>
+    </div>
+
+</div>
+<div class="lg:flex bg-white w-full lg:w-3/4">
+
+    <div class="infoWrapper w-full py-3 p-4 lg:w-1/3">
+        
+        <div class="fieldGroup my-3">
+            <div class="info font-bold mr-2 inline-block">National ID : </div>
+            <div class="value inline-block">{{ personalInfo.nationalId ? personalInfo.nationalId : 'No Value' }}</div>
+        </div>
+        
+        <hr>
+        <div class="fieldGroup my-3">
+            <div class="info font-bold mr-2 inline-block">HR Code : </div>
+            <div class="value inline-block">{{ personalInfo.hrCode ? personalInfo.hrCode : 'No Value' }}</div>
+        </div>    
+        <hr>
+        <div class="fieldGroup my-3">
+            <div class="info font-bold mr-2 inline-block">Manager : </div>
+        <!-- <a *ngIf="personalInfo.managerName" [routerLink]="[ '/employees/view/', personalInfo.managerId ]" target="_blank">{{personalInfo.managerName}}</a>
+            <div *ngIf="!personalInfo.managerName" class="value">No Manager</div> -->
+            <div class="value inline-block">{{ personalInfo.managerName ? personalInfo.managerName : 'No Value' }}</div>
+        </div>
+    
+    </div>
+    
+    <div class="infoWrapper w-full py-3 p-4 lg:w-1/3">
+        
+        <div class="fieldGroup my-3">
+            <div class="info font-bold mr-2 inline-block">Organization Email : </div>
+            <div class="value inline-block">{{ personalInfo.organizationEmail ? personalInfo.organizationEmail : 'No Value' }}</div>
+            <!-- <a href="mailto: {{personalInfo.organizationEmail}}" class="value">{{ personalInfo.organizationEmail ?personalInfo.organizationEmail : 'No Value' }}</a> -->
+        </div>
+        <hr>
+        <div class="fieldGroup my-3">
+            <div class="info font-bold mr-2 inline-block">Bank Name : </div>
+            <div class="value inline-block">{{ personalInfo.bankName ? personalInfo.bankName : 'No Value' }}</div>
+        </div>
+        <hr>
+        <div class="fieldGroup my-3">
+            <div class="info font-bold mr-2 inline-block">Bank Account Name : </div>
+            <div class="value inline-block">{{ personalInfo.bankAccountName? personalInfo.bankAccountName : 'No Value'}}</div>
+        </div>
+    </div>
+    <div class="infoWrapper w-full py-3 p-4 lg:w-1/3">  
+        <div class="fieldGroup my-3">
+            <div class="info font-bold mr-2 inline-block">Bank Account Number : </div>
+            <div class="value inline-block">{{ personalInfo.bankAccountNumber? personalInfo.bankAccountNumber : 'No Value'}}</div>
+        </div>
+        <hr>
+        <div class="fieldGroup my-3">
+            <div class="info font-bold mr-2 inline-block">Medical Insurance Number : </div>
+            <div class="value inline-block">{{ personalInfo.medicalInsuranceNumber? personalInfo.medicalInsuranceNumber : 'No Value'}}</div>
+        </div>
+        <hr>
+        <div class="fieldGroup my-3">
+            <div class="info font-bold mr-2 inline-block">Social insurance number : </div>
+            <div class="value inline-block">{{ personalInfo.socialInsuranceNumber? personalInfo.socialInsuranceNumber : 'No Value'}}</div>
+        </div>
+    </div>
+    
+</div>
+</div>
+

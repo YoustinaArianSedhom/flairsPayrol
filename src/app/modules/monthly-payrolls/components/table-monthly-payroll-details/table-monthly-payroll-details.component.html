@@ -1,0 +1,27 @@
+
+<ng-container *ngIf="(payrollDetails$ | async)?.length; else noResult">
+
+
+
+    <!-- Table -->
+    <app-table-wrapper 
+    [records$]="payrollDetails$" 
+    [config]="tableConfig" 
+    [classes]="pagination?.pageSize > 10 ? 'scroll' : 'no-scroll'"
+    (actionTaken)="mapTableAction($event)"
+    >
+    </app-table-wrapper>
+
+
+    <!-- Pagination -->
+    <app-pagination [config]="pagination" (paginationChange)="paginate($event)">
+    </app-pagination>
+
+</ng-container>
+
+
+<!-- No Result Template -->
+<ng-template #noResult>
+    <app-no-result></app-no-result>
+</ng-template>
+

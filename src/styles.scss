@@ -1,0 +1,30 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+// @import './assets/style/_style.config.scss';
+@import '_material-theme.scss';
+@import '_base.scss';
+// Plus imports for other components in your app.
+
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; color: #4e4e4e; font-size: 13px; }
+body { margin: 0; font-family: var(--mainFont) !important }
+
+html {
+  transition: filter ease-in-out 0.3s;
+  // zoom: 0.9;
+}
+body {
+  // zoom: 0.9;
+}
+html[data-theme='dark'] {
+  background: #000;
+  filter: invert(1) hue-rotate(180deg)
+}

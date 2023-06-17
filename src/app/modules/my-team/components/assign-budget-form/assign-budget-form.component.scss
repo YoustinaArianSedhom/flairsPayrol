@@ -1,0 +1,13 @@
+:host {
+   ::ng-deep{
+      .form-width{
+         flex: 0 1 100% !important;
+      }
+      @media (min-width:1024px){
+         .form-width{
+            flex: 0 1 47% !important;
+
+         }
+      }
+   }
+}

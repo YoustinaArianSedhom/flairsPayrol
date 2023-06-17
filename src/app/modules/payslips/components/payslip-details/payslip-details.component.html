@@ -1,0 +1,75 @@
+<h2 mat-dialog-title>
+   {{record.effectiveDate | date : 'MM/yyyy'}} payslip's details
+</h2>
+<mat-dialog-content class="pl-2 custom-scrolling">
+   <!-- payslip details -->
+   <div class="w-full flex justify-between py-1 px-3 my-3 shadow-sm" *ngFor="let item of record?.effects; let i = index"
+      [ngClass]="{'bg-red-50': item.value < 0 && i !== 0, 'bg-teal-10': item.value > 0 && i !== 0 }">
+      <div class="w-9/12">
+         <span class="info font-bold">
+            {{item.name}}
+         </span>
+         <div class="break-words pt-2 flex items-start pl-3">
+            <span class="text-sm">
+               {{item.description}}
+            </span>
+         </div>
+      </div>
+      <div class="w-3/12"
+         [ngClass]="{'pl-3': i === 0, 'text-red-600': item.value < 0 && i !== 0, 'text-teal': item.value > 0 && i !== 0}">
+
+         <mat-icon class="text-base" *ngIf="i !== 0 ">
+            {{item.value < 0 ? 'arrow_downward' : 'arrow_upward' }} </mat-icon>
+            <span *ngIf="i > 0">
+               {{(item.value > 0 ? '+' + item.value : item.value) | currency : '' : '' : '1.2'}}
+            </span>
+            <span *ngIf="i == 0">
+               {{record.totalMonthlyGrossSalary | currency : '' : '' : '1.2'}}
+
+            </span>
+      </div>
+   </div>
+
+   <!-- <h2 class="text-center m-0 border-t font-bold">Summary</h2> -->
+   <!-- Total Additions -->
+   <!-- <div class="w-full flex justify-between py-1 px-3 mb-3">
+      <div class="w-9/12">
+         <span class="info font-bold">
+            Gross salary + additions (if any)
+         </span>
+      </div>
+      <div class="w-3/12 pl-4">
+         {{totalAdditions | currency : '' : '' : '1.0'}}
+      </div>
+   </div> -->
+
+   <!-- Total deductions -->
+   <!-- <div class="w-full flex justify-between py-1 px-3 my-3 ">
+      <div class="w-9/12">
+         <span class="info font-bold">
+            Deductions
+         </span>
+      </div>
+      <div class="w-3/12 pl-3">
+         {{totalDeductions | currency : '' : '' : '1.0'}}
+      </div>
+   </div> -->
+
+   <!-- total paid salary -->
+
+   <div class="w-full flex justify-between py-1 px-3 my-3 border-t">
+      <div class="w-9/12">
+         <span class="info font-bold">
+            Total paid salary
+         </span>
+      </div>
+      <div class="w-3/12 pl-3">
+         {{record.totalPaidSalary | currency : '' : '' : '1.2'}}
+      </div>
+   </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+   <button mat-button class="actionBtn rounded-none" initialFocus mat-dialog-close>Close</button>
+</mat-dialog-actions>

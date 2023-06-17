@@ -1,0 +1,14 @@
+.backendError {
+    line-height: 25px;
+}
+
+:host {
+    .mat-dialog-content {
+        min-height: 500px;
+    }
+}
+
+.range-error {
+    margin-top: -1rem;
+    font-size: 0.9rem;
+}

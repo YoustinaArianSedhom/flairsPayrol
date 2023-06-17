@@ -1,0 +1,64 @@
+<header class="flex justify-between">
+    <h2>Personal Info</h2>
+    <div 
+    matTooltip="Edit Personal Info"
+    [matTooltipPosition]="'above'"
+    (click)="personalInfoUpdate.emit()" class="themeIcon  right-0 w-5 cursor-pointer" matRipple matRippleColor="red">
+        <img src="../../../../../../../assets/images/edit-button.svg" alt="edit" class="">
+    </div>
+</header>
+
+<div class="fieldGroup block 3xl:flex">
+    <div class="info font-bold mr-2 ">Name : </div>
+    <div class="value">{{ personalInfo.name ? personalInfo.name : 'No Value'}}</div>
+</div>
+
+<div class="fieldGroup block 3xl:flex">
+    <div class="info font-bold mr-2 ">Arabic Name : </div>
+    <div class="value">{{ personalInfo.arabicName ? personalInfo.arabicName : 'No Value'}}</div>
+</div>
+
+<div class="fieldGroup block 3xl:flex">
+    <div class="info font-bold mr-2 ">Title : </div>
+    <div class="value">{{ personalInfo.title ? personalInfo.title : 'No Value'}}</div>
+</div>
+
+<div class="fieldGroup block 3xl:flex">
+    <div class="info font-bold mr-2 ">National ID : </div>
+    <div class="value">{{ personalInfo.nationalId ? personalInfo.nationalId : 'No Value'}}</div>
+</div>
+
+<div class="fieldGroup block 3xl:flex">
+    <div class="info font-bold mr-2 ">HR Code : </div>
+    <div class="value">{{ personalInfo.hrCode ? personalInfo.hrCode : 'No Value'}}</div>
+</div>
+
+<div class="fieldGroup block 3xl:flex">
+    <div class="info font-bold mr-2 ">Medical Insurance Number : </div>
+    <div class="value">{{ personalInfo.medicalInsuranceNumber ? personalInfo.medicalInsuranceNumber : 'No Value'}}</div>
+</div>
+
+<div class="fieldGroup block 3xl:flex">
+    <div class="info font-bold mr-2 ">Social Insurance Number : </div>
+    <div class="value">{{ personalInfo.socialInsuranceNumber ? personalInfo.socialInsuranceNumber : 'No Value'}}</div>
+</div>
+
+<div class="fieldGroup block 3xl:flex">
+    <div class="info font-bold mr-2 ">Employment Date : </div>
+    <div class="value">{{ personalInfo.flairstechJoinDate ? (personalInfo.flairstechJoinDate | date) : 'No Value'}}</div>
+</div>
+<div class="fieldGroup block 3xl:flex">
+    <div class="info font-bold mr-2 ">Email : </div>
+    <a href="mailto:{{ personalInfo.organizationEmail }}">{{ personalInfo.organizationEmail }}</a>
+</div>
+
+<div class="fieldGroup block 3xl:flex">
+    <div class="info font-bold mr-2 ">Detailed Address : </div>
+    <div class="value">{{ personalInfo.address ? personalInfo.address : 'No Value'}}</div>
+</div>
+
+<!-- ! deprecated because it's not arranged -->
+<!-- <div class="fieldGroup block 3xl:flex" *ngFor="let info of personalInfo | keyvalue">
+    <div class="info font-bold mr-2">{{info.key}} :</div>
+    <div class="value">{{info.value}}</div>
+</div> -->

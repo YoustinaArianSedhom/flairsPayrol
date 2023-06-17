@@ -1,0 +1,61 @@
+<app-form-modal>
+
+    <h2 mat-dialog-title>Create new monthly payroll</h2>
+
+
+
+    <mat-dialog-content class="mat-typography">
+
+        <form [formGroup]="monthlyPayrollForm" class="w-50">
+
+            <div class="flex flex-col">
+
+
+                <!-- Entity -->
+                <app-basic-select [withLabel]="true" (selectionChange)="onEntitySelect($event)" class="flex-100" [config]="{
+                    placeholder: 'Choose an Entity',
+                    options: entities
+                }"></app-basic-select>
+
+
+                <mat-form-field>
+                    <mat-label>Month</mat-label>
+                    <input matInput [matDatepicker]="monthlyDatePicker" formControlName="date" [min]="datePickerConfig.min">
+                    <mat-datepicker-toggle matSuffix [for]="monthlyDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker
+                    disabled="false"
+                    #monthlyDatePicker 
+                    startView="year"
+                    (monthSelected)="onMonthSelection($event, monthlyDatePicker)">
+                    </mat-datepicker>
+                </mat-form-field>
+
+
+
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="name" formControlName="name" readonly>
+                </mat-form-field>
+
+
+
+            </div>
+
+
+        </form>
+        <!-- <mat-error class="w-full py-5 flex justify-center text-center" *ngIf="backendError">
+            {{backendError.errorMessage}}
+        </mat-error> -->
+
+    </mat-dialog-content>
+
+
+
+
+    <mat-dialog-actions align="end">
+        <button mat-button class="cancelBtn rounded-none" mat-dialog-close>Cancel</button>
+        <button mat-button class="actionBtn rounded-none" cdkFocusInitial [disabled]="monthlyPayrollForm.invalid"
+            (click)="submit()">
+            Create</button>
+    </mat-dialog-actions>
+</app-form-modal>

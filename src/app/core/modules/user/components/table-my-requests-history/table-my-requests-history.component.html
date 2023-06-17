@@ -1,0 +1,17 @@
+<ng-container *ngIf="(myWorkflows$ |async)?.length">
+
+
+
+    <!--__________Table_______________-->
+    <app-table-wrapper [config]='tableConfig' [records$]='myWorkflows$'
+        [classes]="pagination?.pageSize > 10 ? 'scroll' : 'no-scroll'" (actionTaken)="mapTableActions($event)">
+
+    </app-table-wrapper>
+
+
+
+    <!--_____________pagination__________-->
+    <!-- Pagination -->
+    <app-pagination [config]="pagination" (paginationChange)='firePaginateMyWorkflows($event)'>
+    </app-pagination>
+</ng-container>

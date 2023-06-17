@@ -1,0 +1,28 @@
+<app-form-modal>
+   <ng-container>
+       <h2 mat-dialog-title>Payroll Summary</h2>
+       <mat-dialog-content class="mat-typography">
+         <section class="bg-white pl-5 py-5 relative col-span-2 lg:col-span-1">
+            <section class="fieldGroup block 3xl:flex">
+                <span class="info inline-block font-bold mr-2"> Total Net Salaries</span>
+                <span class="value-inline inline-block italic"> {{payrollSalariesSummary.totalNetSalaries | currency: '': '':
+                    '1.0'}}</span>
+            </section>
+            <section class="fieldGroup block 3xl:flex my-3">
+                <span class="info inline-block font-bold mr-2"> Total Gross Salaries</span>
+                <span class="value-inline inline-block italic"> {{payrollSalariesSummary.totalGrossSalaries | currency: '': '':
+                    '1.0'}}</span>
+            </section>
+            <section class="fieldGroup block 3xl:flex">
+                <span class="info inline-block font-bold mr-2"> Total Paid Salaries</span>
+                <span class="value-inline inline-block italic"> {{payrollSalariesSummary.totalPaidSalaries | currency: '': '':
+                    '1.0'}}</span>
+            </section>
+        </section>
+       </mat-dialog-content>
+       <mat-dialog-actions align="end">
+           <button mat-button cdkFocusInitial mat-dialog-close class="actionBtn rounded-none"> Close </button>
+       </mat-dialog-actions>
+   </ng-container>
+ </app-form-modal>
+ 

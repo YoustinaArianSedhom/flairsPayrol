@@ -1,0 +1,49 @@
+<app-form-modal>
+
+  <h1 mat-dialog-title>Edit Team Details</h1>
+
+  <mat-dialog-content>
+
+
+    <form class="my-5 w-96" [formGroup]="editTeamDetailsForm">
+
+      <div class="flex flex-col w-full">
+
+        <mat-form-field class="w-full my-2">
+          <mat-label>Name*</mat-label>
+          <input type="text" aria-label="Text" matInput formControlName="name" autocomplete="off" type="text"
+            matAutosize />
+          <mat-error>
+            <app-validation-error [control]="formControls.name" businessName="Team Name"></app-validation-error>
+          </mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field class="w-full my-2">
+          <mat-label>Mission</mat-label>
+          <textarea type="text" aria-label="Text" matInput formControlName="mission" autocomplete="off" type="text"
+            matAutosize>
+            </textarea>
+          <mat-hint align="end">{{ formControls.mission.value?.length || 0 }}/1000</mat-hint>
+        </mat-form-field>
+
+
+      </div>
+
+
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close class="cancelBtn rounded-none">
+      Cancel
+    </button>
+    <button mat-button cdkFocusInitial [disabled]="editTeamDetailsForm.invalid" class="actionBtn rounded-none"
+      (click)="editTeamDetails(editTeamDetailsForm.value)">
+      Save
+    </button>
+    <!-- <button mat-button mat-dialog-close>Close</button>
+  <button mat-raised-button color="warn">Save</button> -->
+  </mat-dialog-actions>
+
+</app-form-modal>

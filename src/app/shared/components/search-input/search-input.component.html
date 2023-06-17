@@ -1,0 +1,19 @@
+<!-- Search input -->
+    <!-- <div class=""> -->
+        <mat-form-field appearance="fill" class=" search-input-wrapper">
+            <input tabindex="1" [value]="search" type="search" #searchInput class="search-input" [placeholder]="placeholder" (keyup)="onSearchTermChange($event)"
+                matInput />
+            <mat-icon tabindex="1" *ngIf="searchInput.value" class="cursor-pointer" matSuffix (click)="[resetInput(), onSearchChange('')]">clear</mat-icon>
+        </mat-form-field>
+        <div *ngIf="resultsFor && withResult">
+            showing results for :
+            <div class="resultChip">
+                {{resultsFor}}
+                <mat-icon tabindex="1" class="cursor-pointer" matSuffix (click)="[resetInput(), onSearchChange('')]">clear</mat-icon>
+            </div>
+        </div>
+        <!-- <div class="col-2 pl-0 align-self-center searchIcon">
+            <mat-icon tabindex="1" svgIcon="search" class="mat-icon-1x hover-pointer" (click)="triggerChangeEvent()"></mat-icon>
+        </div> -->
+    <!-- </div> -->
+<!--/ Search input -->

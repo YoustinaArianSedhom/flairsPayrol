@@ -1,0 +1,26 @@
+:host {
+   ::ng-deep {
+
+      .mat-row,
+      .mat-header-row{
+         min-height: 30px;
+         &:last-child{
+
+            border-bottom: 0;
+         }
+      }
+      .mat-header-cell{
+         color: black;
+      }
+      .mat-table{
+         overflow-y: auto;
+      }
+      .mat-header-cell,
+      .mat-cell{
+         background: #f7f7f7;
+         min-width: 100px !important;
+      }
+
+
+   }
+}

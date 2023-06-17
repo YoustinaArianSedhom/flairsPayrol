@@ -1,0 +1,21 @@
+<header class="flex justify-between">
+    <h2>Bank Info</h2>
+    <div 
+    matTooltip="Edit Bank Info"
+    [matTooltipPosition]="'above'"
+    (click)="bankInfoUpdate.emit()" class="themeIcon  right-0 w-5 cursor-pointer" matRipple matRippleColor="red">
+        <img src="../../../../../../../assets/images/edit-button.svg" alt="edit" class="">
+    </div>
+</header>
+<div class="fieldGroup block">
+    <div class="info font-bold mr-2 ">Bank Name : </div>
+    <div class="value">{{ bankInfo.bankName ? bankInfo.bankName : 'No Value'}}</div>
+</div>
+<div class="fieldGroup block">
+    <div class="info font-bold pr-2 ">Employee Bank Name : </div>
+    <div class="value">{{ bankInfo.bankAccountName ? bankInfo.bankAccountName : 'No Value'}}</div>
+</div>
+<div class="fieldGroup block">
+    <div class="info font-bold pr-2 ">Bank Account Number : </div>
+    <div class="value">{{ bankInfo.bankAccountNumber ? bankInfo.bankAccountNumber : 'No Value'}}</div>
+</div>

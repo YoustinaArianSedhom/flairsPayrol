@@ -1,0 +1,22 @@
+:host ::ng-deep {
+
+    .mat-radio-button {
+        background: var(--accent);
+        color: var(--accentAlt);
+        // padding: 0.5rem 2rem;
+        transition: all ease-in-out 0.2s;
+        .mat-radio-container {
+            display: none !important;
+        }
+        .mat-radio-label-content {
+            padding: 0.5rem 2rem;
+        }
+        &.mat-radio-checked {
+            background: var(--primary);
+            color: var(--accent);
+        }
+    }
+
+
+
+}

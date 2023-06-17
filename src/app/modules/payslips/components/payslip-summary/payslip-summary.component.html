@@ -1,0 +1,23 @@
+<ng-container *ngIf="summary">
+
+
+    <header class="flex justify-between">
+        <h2>Manager Info</h2>
+    </header>
+
+    <div class="fieldGroup block 3xl:flex">
+        <div class="info font-bold inline-block mr-2 ">Manager Name : </div>
+        <div class="value-inline inline-block italic">{{ summary.managerName || 'No Value'}}</div>
+    </div>
+    <div class="fieldGroup block 3xl:flex">
+        <div class="info font-bold inline-block mr-2 ">Manager Email : </div>
+        <a [href]="'mailto:'+ summary.managerOrganizationEmail" class="value-inline inline-block italic">{{ summary.managerOrganizationEmail || 'No Value'}}</a>
+    </div>
+
+    <div class="fieldGroup block 3xl:flex">
+        <div class="info font-bold inline-block mr-2 "> Manager Title: </div>
+        <div class="value-inline inline-block">{{ summary.managerTitle || 'No Value'}}</div>
+    </div>
+
+
+</ng-container>

@@ -1,0 +1,13 @@
+<ng-container *ngIf="(records$ | async)?.length; else noResult">
+  <!-- Table -->
+  <app-table-wrapper [records$]="records$" [config]="tableConfig">
+  </app-table-wrapper>
+
+</ng-container>
+
+<!-- No Result Template -->
+<ng-template #noResult>
+  <!-- <app-no-result></app-no-result> -->
+  <h2 class="text-center pt-5">Sorry, No result, please try again </h2>
+</ng-template>
+ 

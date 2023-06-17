@@ -1,0 +1,21 @@
+<section class="dialog-wrapper">
+
+
+    <header class="col-12 mb-5">
+        <div class="flex justify-between items-center">
+            <h1 mat-dialog-title class="capitalize mat-dialog-title--small">
+                {{ data.title }}
+            </h1>
+        </div>
+
+    </header>
+
+    <div mat-dialog-content class="text-center content">
+        <mat-icon *ngIf="data.status === 'success'" class="mb-2 success-icon" matPrefix>check_circle</mat-icon>
+
+        <mat-icon *ngIf="data.status === 'fail'" class="mb-2 fail-icon" matPrefix>cancel</mat-icon>
+        <p>
+            {{ data.content }}
+        </p>
+    </div>
+</section>

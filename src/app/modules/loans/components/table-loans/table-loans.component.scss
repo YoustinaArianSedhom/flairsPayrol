@@ -1,0 +1,15 @@
+:host ::ng-deep {
+    mat-cell, mat-header-cell {
+        min-width: 120px!important;
+        overflow-wrap: anywhere;
+        padding: 0 0.5rem;
+       
+        &.mat-column-email{
+            min-width: 200px!important;
+        }      
+        &.mat-column-status{
+            min-width: 70px!important;
+        } 
+    }
+
+}

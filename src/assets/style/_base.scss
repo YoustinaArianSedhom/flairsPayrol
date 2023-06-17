@@ -1,0 +1,150 @@
+
+@import '_variables.scss';
+@import './components/_custom-scrollbar.component.scss';
+
+a {
+    color: var(--primary);
+    transition: all ease-in-out 0.2s;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+
+button.actionBtn  {
+    background-color: var(--primary);
+    color: white;
+    text-transform: uppercase;
+    &.mat-button-disabled {
+        background-color: var(--accent);
+    }
+}
+button.actionBtn-2  {
+    background-color: var(--accentAlt);
+    color: white;
+    text-transform: uppercase;
+    &.mat-button-disabled {
+        background-color: var(--accent);
+    }
+}
+
+button.cancelBtn  {
+    text-transform: uppercase;
+    background-color: var(--accent);
+}
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: auto;
+}
+
+:focus {
+    outline: 0 !important;
+}
+
+// .themeIcon {
+//     &:hover {
+//         color
+//     }
+// }
+
+.min-100 {
+    min-width: 100px !important;
+}
+.min-200 {
+    min-width: 200px !important;
+}
+
+
+button[hidden] {
+    display: none !important;
+}
+
+.innerWrapper {
+    min-height: calc(100vh - 120px);
+    @media screen and (max-height:660px) {
+        min-height: calc(100vh - 200px) !important;
+    }
+}
+h1,h2 {
+    font-family: var(--mainFont) !important;
+}
+
+.value {
+    word-break: break-all;
+}
+
+.value-inline { 
+    word-break: keep-all;
+}
+
+.bg-teal-500{
+    background-color: var(--success);
+}
+.bg-teal-10{
+    background: var(--successRGB);
+}
+.text-teal-500{
+    color: var(--success);
+}
+
+
+.filterBox{
+    .transferDate{
+        .mat-form-field-infix{
+            width: 110px;
+        }
+    }
+.dateField{
+    .mat-form-field-infix{
+        padding-top: 0;
+    }
+}
+    &-search{
+    .mat-form-field{
+      background: transparent;
+      width: 100%!important;
+      margin-left:0!important;
+      margin-top:0!important;
+      &-appearance-fill .mat-form-field-flex {
+          background-color: transparent;
+      }
+      &-underline{
+        display: none;
+      }
+      &-wrapper{
+        padding-bottom: 0;
+      }
+      
+    }
+  }
+  .mat-form-field-appearance-standard {
+    .mat-form-field-wrapper{
+        padding-bottom: 0;
+        .mat-form-field-infix{
+            border-top: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        .mat-form-field-underline{
+            display: none;
+        }
+        .mat-select-arrow{
+            border: 0;
+            &:before{
+                content: '‹';
+                transform: rotate(-90deg)translateX(0.4em);
+                display: block;
+                font-size: 20px;
+                color: black;
+                
+            }
+        }
+    } 
+    &:not(.mat-form-field-should-float){
+        .mat-form-field-label{
+            transform: translateY(-0.6em)
+             }
+    }   
+  } 
+}

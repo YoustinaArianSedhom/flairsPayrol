@@ -1,0 +1,58 @@
+:host ::ng-deep {
+    mat-cell, mat-header-cell {
+        min-width: 100px;
+        overflow-wrap: anywhere;
+        padding: 0 0.5rem;
+        &.justify-center {
+            text-align: center !important;
+        }
+        @media screen and (min-width:1550px){
+            min-width: 12rem !important;
+        }
+        @media screen and (max-width:1400px){
+            min-width: 10rem !important;
+        }
+        @media screen and (max-width:1300px){
+            min-width: 10rem!important;
+        }
+        @media screen and (max-width: 900px) {
+            min-width: 150px !important;
+        }
+        @media screen and (max-width:768px){
+            min-width: 150px !important;
+        }
+        
+        
+        
+    }
+    mat-row, mat-header-row {
+        @media screen and (max-width:1550px){
+            min-width: 100vw !important;
+        }
+        @media screen and (max-width:1400px){
+            min-width: 130vw !important;
+        }
+        @media screen and (max-width:1300px){
+            min-width: 140vw!important;
+        }
+        @media screen and (max-width:768px){
+            min-width: 160vw!important;
+        }
+    }
+    mat-row {
+        border-bottom: 1px solid var(--primaryAlt);
+    }
+
+    mat-table.mat-table {
+        @media screen and (max-height: 770px) {
+            max-height: 80vh !important;
+            overflow-y: scroll;
+        }
+    }
+    .cdk-column-employee_boarding_status{
+        min-width: 130px!important;
+    }
+    .mat-column-actions{
+        min-width: 60px !important;
+    }
+}

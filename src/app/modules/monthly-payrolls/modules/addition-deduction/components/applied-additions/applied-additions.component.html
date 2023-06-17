@@ -1,0 +1,12 @@
+<app-form-modal>
+  <ng-container>
+      <h2 mat-dialog-title>Applied Additions</h2>
+      <mat-dialog-content class="mat-typography">
+          <app-table-wrapper [records$]="uploadedAdditions$" [config]="tableConfig" [classes]="(uploadedAdditions$|async).length > 5? 'custom-scrolling': ''">
+          </app-table-wrapper>
+      </mat-dialog-content>
+      <mat-dialog-actions align="end">
+          <button mat-button cdkFocusInitial mat-dialog-close class="actionBtn rounded-none"> Close </button>
+      </mat-dialog-actions>
+  </ng-container>
+</app-form-modal>

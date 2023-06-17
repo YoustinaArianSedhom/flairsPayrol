@@ -1,0 +1,127 @@
+<app-inner-page-layout>
+  <ng-container>
+    <h1>{{ headInformation.title }}</h1>
+    <div class=" bg-white w-full p-1  lg:p-5">
+      <div class="flex flex-wrap pb-3">
+        <div class="w-full pt-2 lg:pt-0 lg:w-1/4">
+          <div class="flex items-center pb-3">
+            <mat-icon class="mr-3">people</mat-icon>
+            <span class=" info font-bold">Team Details</span>
+          </div>
+          <div class="teamDetailsWrapper  p-4 custom-scrolling" [ngClass]="{'overflow-y-scroll' : teamDetails?.mission?.length > 330}">
+            <div class=" w-full ">
+
+              <div class="flex justify-between">
+                <div class="w-full lg:w-5/6 text-sm">
+
+                  <div class="pb-2 flex flex-col  ">
+                    <span class="font-bold pr-2 ">
+                      Team name
+                    </span>
+                    <span>
+                      {{ teamDetails && teamDetails.name ? teamDetails.name : "No Value"}}
+                    </span>
+                  </div>
+
+                  <div class="flex flex-col  ">
+                    <span class="font-bold pr-2 w-3/5 lg:w-1/3">
+                      Mission
+                    </span>
+                    <span>
+                      {{ teamDetails && teamDetails.mission ? teamDetails.mission
+                      : "Please click on Edit to add a mission"}}
+                    </span>
+                  </div>
+                </div>
+
+                <div matTooltip="Edit Team Details" (click)="openUpdateTeamDetailsModal(teamDetails)"
+                  [matTooltipPosition]="'above'" class="w-7 pl-2 cursor-pointer" matRipple matRippleColor="red">
+                  <img src="../../../../../../../assets/images/edit-button.svg" alt="edit" />
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w-full pt-4 lg:pt-0 lg:pl-6 lg:w-3/4">
+          <div class="flex items-center justify-between pb-3">
+            <div class="flex items-center">
+              <mat-icon class="mr-3 w-full" svgIcon="monthly_assigned_budget">monetization_on</mat-icon>
+              <span class=" info font-bold">Monthly Assigned Budget</span>
+            </div>
+            <div>
+              <span class="text-red-500">
+                Total Remaining
+                <span class="font-bold">
+                  {{currentBudget?.totalBudgetRemainingAmount ? (currentBudget?.totalBudgetRemainingAmount | currency:
+                  "":"":"1.0-2") : 0 }}
+                </span>
+                out of {{ currentBudget?.totalBudgetAmount ? (currentBudget?.totalBudgetAmount | currency:
+                "":"":"1.0-2") : 0 }}
+              </span>
+            </div>
+          </div>
+          <div class="teamDetailsWrapper ">
+            <div class="flex items-start">
+              <app-table-current-budget class="w-full"></app-table-current-budget>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-right mt-10">
+      <button mat-button mat-flat-button (click)="exportMyTeam()"
+            class="actionBtn rounded-none col-span-2 mt-3 lg:mt-0" >Export</button>
+    </div>
+    <div class="w-full mt-5">
+      <div class="2xl:flex 2xl:justify-between md:items-center bg-white px-5 pt-2 pb-3 mb-7 filterBox">
+        <div class="flex items-center flex-grow mt-3">
+          <mat-icon class="text-gray-400">filter_alt</mat-icon>
+          <app-search-input class="flex-grow filterBox-search" placeholder="Search using name or email"
+            (searchChange)="fireSearchMyTeamMembersAction($event)" [search]="searchQuery" [withResult]="false">
+          </app-search-input>
+        </div>
+
+
+        <!-- Filters Wrapper -->
+        <div class="flex md:flex-nowrap flex-wrap justify-end items-baseline ">
+          <!-- Direct Reports Filter -->
+          <mat-checkbox color="primary" class="font-bold xl:pr-20" [checked]="filtration.subsInRoleManagerOnly"
+            (change)="toggleDirectSubRoleManagerOnly()">
+            View Managers</mat-checkbox>
+          <!-- Direct Reports Filter -->
+          <mat-checkbox color="primary" class="font-bold px-3" [checked]="filtration.directSubsOnly"
+            (change)="toggleDirectReports()">
+            View Direct Subordinates</mat-checkbox>
+          <!-- Filter By Status -->
+          <app-basic-select class="w-44 px-3" [options]="myTeamStatuses"
+            [emitPassedValue]="false" [withLabel]="true"
+            (optionsChange)="myTeamFiltrationByStatus($event.value)" [config]="myTeamStatusesSelectConfig">
+          </app-basic-select>
+          <!-- Date Filter -->
+          <div class="flex md:flex-nowrap justify-md-end items-baseline px-3">
+
+            <mat-form-field>
+              <mat-label>Loyalty bonus month</mat-label>
+              <input matInput [matDatepicker]="dp" [max]="maxDate" [min]="minDate" [formControl]="date" readonly>
+              <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+              <mat-datepicker #dp startView="year" [startAt]="maxDate" (monthSelected)="setMonthAndYear($event, dp)"
+              panelClass="myTeam-datepicker-toggle" [calendarHeaderComponent]="exampleHeader">
+              </mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <button (click)="resetFilter()" mat-button color="warn" aria-label="Clear Filter">
+            Clear
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class=" bg-white w-full p-1  lg:p-5">
+      <!-- Table -->
+      <app-table-my-team></app-table-my-team>
+    </div>
+  </ng-container>
+</app-inner-page-layout>

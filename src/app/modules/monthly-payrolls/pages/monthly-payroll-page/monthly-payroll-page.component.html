@@ -1,0 +1,92 @@
+<app-inner-page-layout>
+    
+
+    <ng-container *ngIf="summary; else loader">
+        <!-- Page Upper -->
+        <section class="page-header flex justify-between my-5">
+            <header class="page-header important-area">
+                <h1 class="flex items-center" style="margin-bottom: 0 !important;"><button class="mr-3" (click)="navigateBack()"><mat-icon class="text-2xl">arrow_back_ios</mat-icon></button> {{summary.name}}
+                    <mat-slide-toggle color="primary" class="text-xs text-gray-500 font-medium"
+                        (toggleChange)="onMonthlyPayrollToggle(summary)"
+                        [checked]="summary.status == payrollStatusesEnum.opened"
+                        [disabled]="summary.status == payrollStatusesEnum.published">
+                        {{summary.status === payrollStatusesEnum.opened ? 'Opened': 'Closed'}}
+                    </mat-slide-toggle>
+                </h1>
+                <h3> <a [routerLink]="['/entities/view', summary.entity.id]"> {{summary.entity.name}}</a> </h3>
+            </header>
+
+
+            <app-monthly-payroll-actions-menu></app-monthly-payroll-actions-menu>
+        </section>
+
+
+
+        <!-- Page Middle -->
+        <section class="block mx-0 mb-10">
+            
+            <app-summary-monthly-payroll></app-summary-monthly-payroll>
+        </section>
+
+
+
+        
+        
+        
+        
+    </ng-container>
+    <ng-template #loader>
+        <section class="flex gap-3 justify-center m-auto ng-star-inserted w-full ">
+            <section class=" pl-5 py-5 relative ">
+                <div role="status" class="flex justify-center items-center h-60 flex-col">
+                    <svg class="inline text-gray-200 animate-spin  dark:text-gray-600 fill-primary" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                        <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                    </svg>
+                    <span class="mt-6 animate-pulse font-medium uppercase text-gray-500">Loading Entity's Summary</span>
+                </div>
+    
+            </section>
+        </section>
+    </ng-template>
+    <div class="w-full">
+        <div class="md:flex md:justify-between md:items-center bg-white px-5 pt-2 pb-3 mb-7 filterBox">
+          <div class="flex items-center flex-grow ">
+            <mat-icon class="text-gray-400">filter_alt</mat-icon>
+            <app-search-input class="flex-grow filterBox-search"
+              (searchChange)="search($event)" [search]="searchQuery" [withResult]="false"></app-search-input>
+          </div>
+      
+      
+          <!-- Filters Wrapper -->
+          <div class="flex md:flex-nowrap flex-wrap justify-end items-baseline">
+              <!-- Suspended Filter -->
+              <mat-checkbox color="primary" class="font-bold pr-10" [checked]="showSuspendedOnlyCheckBox" (change)="showSuspendedOnly($event.checked)">
+                Show Suspended Only</mat-checkbox>
+
+            <!-- Transfer Date -->
+            <mat-form-field class="transferDate mr-3">
+                <mat-label>Transfer Date</mat-label>
+                <mat-select (selectionChange)="onTransferDateChange($event)" [(ngModel)]="transferDate">
+                  <mat-option *ngFor="let item of monthlyPayrollTransferDates" [value]="item.value">
+                    {{item.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              
+
+            <app-basic-select [options]="status" [withLabel]="true" [emitPassedValue]="false" (optionsChange)="filterStatus($event)" [config]="statusSelectConfig" class="w-44 px-3"></app-basic-select>
+
+            <button (click)="resetFilter()" mat-button color="warn" aria-label="Clear Filter">
+                Clear
+             </button>
+             </div>
+             </div>
+    </div>
+    <div class="innerWrapper bg-white w-full p-1 lg:p-5">
+        
+        <!-- Table -->
+        <app-table-monthly-payroll-details></app-table-monthly-payroll-details>
+    </div>
+
+</app-inner-page-layout>

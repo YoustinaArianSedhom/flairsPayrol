@@ -1,0 +1,33 @@
+<app-inner-page-layout>
+    <ng-container>
+
+        <!-- Page Upper -->
+        <section class="flex justify-between my-5">
+            <header>
+                <h1 class="flex items-center" style="margin-bottom: 0!important;">
+                    <button class="mr-3" (click)="navigateBack()">
+
+                        <mat-icon class="text-2xl">arrow_back_ios</mat-icon>
+                    </button>
+                    {{summary?.profileName}}'s Payslip
+                </h1>
+                <a *ngIf="summary?.profileName" href="mailto: {{summary.profileOrganizationEmail}}">{{
+                    summary?.profileOrganizationEmail }}</a>
+                <h3>{{summary?.profileTitle}}</h3>
+            </header>
+        </section>
+
+
+        <section class="bg-white block mx-0 md:w-3/6 pl-5 py-5">
+            <app-payslip-summary></app-payslip-summary>
+        </section>
+
+        <div class="my-5 flex justify-end">
+            <button mat-button mat-flat-button (click)="exportAsExcel()"
+                class="actionBtn rounded-none col-span-2 mt-3 lg:mt-0">Export To Excel</button>
+        </div>
+        <app-table-payslip [profileId]="profileId" [mode]="mode"></app-table-payslip>
+
+
+    </ng-container>
+</app-inner-page-layout>

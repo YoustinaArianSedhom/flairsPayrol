@@ -1,0 +1,50 @@
+<!-- <app-form-modal>
+    <ng-container> -->
+<h2 mat-dialog-title>{{isUpdate ? 'Update Global Deduction' : 'Add New Global Deduction'}}</h2>
+<!-- <mat-dialog-content class="mat-typography"> -->
+<form [formGroup]="globalDeductionForm">
+
+    <!--! Global Deduction name -->
+    <mat-form-field appearance="" class="w-full">
+        <mat-label>Global Deduction Name</mat-label>
+        <input type="text" formControlName="name" placeholder="Global Deduction Name" required matInput>
+        <mat-error>
+            <app-validation-error [control]="globalDeductionForm.get('name')" businessName="Global Deduction Name">
+            </app-validation-error>
+        </mat-error>
+    </mat-form-field>
+
+
+    <!--! Social insurance percentage -->
+    <mat-form-field appearance="" class="w-full mt-3">
+        <mat-label>Percentage Value</mat-label>
+        <input type="number" min="0" max="100" formControlName="value" placeholder="Percentage Value" required matInput>
+        <span matSuffix>%</span>
+        <mat-error>
+            <app-validation-error [control]="globalDeductionForm.get('value')" businessName="Percentage Value">
+            </app-validation-error>
+        </mat-error>
+    </mat-form-field>
+
+
+
+    <!-- Applied on Employees -->
+    <div class="col-12 col-lg-6">
+        <mat-checkbox formControlName="isApplied">Paid by <strong>Employees</strong></mat-checkbox>
+    </div>
+
+
+
+</form>
+
+
+<!-- </mat-dialog-content> -->
+<!-- <mat-dialog-actions align="end"> -->
+<div class="justify-end flex">
+    <button mat-button mat-dialog-close (click)="cancel()" class="cancelBtn rounded-none">Cancel</button>
+    <button mat-button cdkFocusInitial [disabled]="globalDeductionForm.invalid" class="actionBtn rounded-none"
+        (click)="submit()"> {{isUpdate ? 'Update' : 'Add'}} </button>
+</div>
+<!-- </mat-dialog-actions> -->
+<!-- </ng-container>
+</app-form-modal> -->

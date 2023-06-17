@@ -1,0 +1,28 @@
+<app-inner-page-layout>
+    <ng-container>
+
+
+        <ng-container *ngIf="summary">
+
+            <!-- Page Upper -->
+            <section class="flex justify-between my-5">
+                <header>
+                    <h1 style="margin-bottom: 0 !important;">{{summary?.profileName}}'s Payslip</h1>
+                    <h3>{{summary?.profileTitle}}</h3>
+                </header>
+            </section>
+
+
+            <section class="bg-white block mx-0 md:w-3/6 pl-5 py-5">
+                <app-payslip-summary></app-payslip-summary>
+            </section>
+            <div class="my-5"></div>
+        </ng-container>
+
+
+
+        <app-table-payslip [mode]="mode"></app-table-payslip>
+
+
+    </ng-container>
+</app-inner-page-layout>

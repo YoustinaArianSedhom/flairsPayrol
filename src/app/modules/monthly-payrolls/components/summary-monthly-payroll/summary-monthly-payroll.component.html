@@ -1,0 +1,67 @@
+<ng-container *ngIf="summary">
+
+    <section class="flex gap-3 grid grid-cols-2 justify-evenly m-auto ng-star-inserted w-full xl:w-10/12">
+
+        <section class="bg-white pl-5 py-5 relative col-span-2 ">
+            <div class="statusWrapper flex justify-end items-center absolute right-0">
+                <span class="text-sm shadow-md px-3 py-1 text-white bg-yellow-500"
+                    *ngIf="summary.allocationSheetUploaded"> Allocation Applied</span>
+                <span class="ml-3 text-sm shadow-md px-3 py-1 text-white" [ngClass]="{
+                    'bg-teal': summary.status == payrollStatusesEnum.closed || summary.status == payrollStatusesEnum.opened,
+                    'bg-red-600': summary.status == payrollStatusesEnum.published
+                }">{{payrollStatuses[summary.status]}}</span>
+            </div>
+            <header class="flex justify-between">
+                <h2>Payroll History</h2>
+            </header>
+
+
+            <div class="flex flex-wrap justify-between w-11/12 m-auto">
+                <div>
+                    <div class="fieldGroup block 3xl:flex">
+                        <div class="info inline-block font-bold mr-2">Creation date : </div>
+                        <div class="value-inline inline-block italic">{{ summary.createdDate | date}}</div>
+                    </div>
+
+                    <div class="fieldGroup block 3xl:flex">
+                        <div class="info font-bold inline-block mr-2 ">Created by : </div>
+                        <div class="value-inline inline-block">{{ summary.createdBy.name || 'No Value'}}</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="fieldGroup block 3xl:flex">
+                        <div class="info font-bold inline-block mr-2 ">last modified date : </div>
+                        <div class="value-inline inline-block italic">{{ summary.lastModifiedDate | date}}</div>
+                    </div>
+
+                    <div class="fieldGroup block 3xl:flex">
+                        <div class="info font-bold inline-block mr-2 "> Last modified by: </div>
+                        <div class="value-inline inline-block">{{ summary.lastModifiedBy.name || 'No Value'}}</div>
+                    </div>
+                </div>
+                <div *ngIf="summary.publishedBy">
+                    <div class="fieldGroup block 3xl:flex">
+                        <div class="info font-bold inline-block mr-2 ">Publishing date : </div>
+                        <div class="value-inline inline-block italic">{{ summary.publishedDate | date}}</div>
+                    </div>
+
+                    <div class="fieldGroup block 3xl:flex">
+                        <div class="info inline-block font-bold mr-2 "> Published by: </div>
+                        <div class="value-inline inline-block">{{ summary.publishedBy.name || 'No Value'}}</div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+
+
+
+    </section>
+
+
+
+
+
+</ng-container>

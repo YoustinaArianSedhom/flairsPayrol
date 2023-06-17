@@ -1,0 +1,75 @@
+<div *ngFor="let record of records" class="p-5 pt-10 bg-accent relative overflow-hidden radius">
+    <div *ngIf="record.isCurrent" class="isCurrent {{type}}">
+        Current Month
+    </div>
+    <!-- {{isEditable}} -->
+    <div class="actions flex justify-end absolute right-3 top-2" *ngIf="isEditable == 'true'" >
+
+
+
+        <div
+            [hidden]="!record?.isEditable"
+            matTooltip="Edit"
+            [matTooltipPosition]="'above'"
+            class="themeIcon right-0 w-5 cursor-pointer h-5"
+            matRipple matRippleColor="red" [inlineSVG]="'assets/images/edit-button.svg'" aria-label="edit"
+            (click)="updateRecord(record)"
+            >
+                <!-- <img src="../../../../../../../assets/images/edit-button.svg" alt="edit" class=""> -->
+
+        </div>
+        <div
+            [hidden]="!record?.isEditable"
+            matTooltip="Delete"
+            [matTooltipPosition]="'above'"
+            class="themeIcon right-0 w-5 cursor-pointer h-5"
+            matRipple matRippleColor="red" [inlineSVG]="'assets/images/delete.svg'" aria-label="delete"
+            (click)="deleteRecords(record)"
+            >
+                <!-- <img src="../../../../../../../assets/images/delete.svg" alt="edit" class=""> -->
+        </div>
+
+    </div>
+    <!-- <div>
+        <span class="font-black capitalize">id :</span> {{record.id}}
+    </div> -->
+    <div>
+        <span class="font-black capitalize ">name :</span>
+
+        <span *ngIf="type === 'addition'"> {{record.additionType.name}}</span>
+        <span *ngIf="type === 'deduction'"> {{record.deductionType.name}}</span>
+    </div>
+    <div class="value {{type}}">
+        <span class="font-black capitalize ">value :</span>
+        <span class="record">
+            {{record.value}}
+            <!-- <span *ngIf="type === 'addition'">+</span>
+            <span *ngIf="type === 'deduction'">-</span> -->
+        </span>
+    </div>
+    <div>
+        <span class="font-black capitalize">applies on :</span>
+       {{monthName(record.startMonth-1)}} {{record.startYear}}
+    </div>
+    <!-- <div>
+        <span class="font-black capitalize">to :</span>
+        {{monthName(record.endMonth-1)}} {{record.endYear}}
+    </div> -->
+    <div *ngIf="record.notes" class="w-3/4">
+        <span class="font-black capitalize">notes :</span>
+        {{record.notes}}
+    </div>
+
+    <div class="type {{type}}">
+        <!-- <div class="ribbon relative" *ngIf="type === 'addition'">
+            <img class="w-10" src="../../../../../../../assets/images/up-arrow.svg" alt="">
+        </div> -->
+        <div class="w-10 ribbon relative" *ngIf="type === 'addition'" aria-label="addition icon" [inlineSVG]="'/assets/images/up-arrow.svg'"></div>
+        <div class="w-10 ribbon relative" *ngIf="type === 'deduction'" aria-label="deduction icon" [inlineSVG]="'/assets/images/down-arrow.svg'"></div>
+
+        <!-- <div class="ribbon relative" *ngIf="type === 'deduction'">
+            <img class="w-10" src="../../../../../../../assets/images/down-arrow.svg" alt="">
+        </div> -->
+    </div>
+
+</div>

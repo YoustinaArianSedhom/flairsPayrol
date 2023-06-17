@@ -1,0 +1,20 @@
+<section (clickOutside)="isOpened = false" >
+    <flairstech-products-dropdown [isProduction]=isProduction ></flairstech-products-dropdown>
+    <div class="userNav cursor-pointer" (click)="isOpened = !isOpened" >
+        <img src="{{profilePic?profilePic:'assets/images/candidate-avatar.svg'}}" alt="profile pic" class="rounded-3xl">
+        </div>
+    
+    <div [ngClass]="{'isShown': isOpened}" class="userControl shadow-md z-50" >
+        <ul>
+            <li class="p-2 hover:bg-accent cursor-pointer" (click)="isOpened=!isOpened">
+                <p>Signed In As: <span> {{loggedInUser.profileName}}</span></p>
+            </li>
+            <li class="p-2 hover:bg-accent cursor-pointer" (click)="isOpened=!isOpened" [routerLink]="[ '/my-profile']">
+                My Profile
+            </li>
+            <li class="p-2 hover:bg-accent cursor-pointer" (click)="confirmLogout()">
+                Log Out
+            </li>
+        </ul>
+    </div>
+</section>

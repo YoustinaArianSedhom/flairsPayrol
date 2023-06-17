@@ -1,0 +1,49 @@
+<app-form-modal>
+
+    <h2 mat-dialog-title>Update Employee Roles</h2>
+
+
+
+    <mat-dialog-content class="mat-typography custom-scrolling">
+
+        <section class="w-60 md:w-72 lg:w-96">
+
+            <div class="flex flex-col">
+
+                <ng-container *ngFor="let role of nonUpdatableRoles">
+                    <section class="flex shadow-sm px-3 py-2 justify-between my-3">
+                        <span>{{role}}</span>
+
+                        <mat-slide-toggle [checked]="isRoleGranted(role)" [disabled]="true" color="primary"
+                            labelPosition='before'>
+                        </mat-slide-toggle>
+
+                    </section>
+                </ng-container>
+
+
+
+                <ng-container *ngFor="let role of updatableRoles">
+                    <section class="flex justify-between shadow-sm px-3 py-2 my-3">
+                        <span>{{role}}</span>
+                        <mat-slide-toggle [checked]="isRoleGranted(role)" color="primary" labelPosition='before'
+                            (change)="onRoleChange($event, role)">
+                        </mat-slide-toggle>
+                    </section>
+                </ng-container>
+
+            </div>
+
+
+        </section>
+
+    </mat-dialog-content>
+
+
+
+
+    <mat-dialog-actions align="end">
+        <button mat-button class="cancelBtn rounded-none" mat-dialog-close>Cancel</button>
+        <button mat-button class="actionBtn rounded-none" cdkFocusInitial (click)="submit()">Update</button>
+    </mat-dialog-actions>
+</app-form-modal>

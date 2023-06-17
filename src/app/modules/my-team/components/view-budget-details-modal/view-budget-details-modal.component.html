@@ -1,0 +1,33 @@
+<app-form-modal>
+   <h2 mat-dialog-title class="text-primary border-b-2 pb-2">Monthly Budget</h2>
+   <mat-dialog-content class="mat-typography custom-scrolling">
+      <h2>{{data.profileName}}'s Monthly Assigned Budget</h2>
+      <div class="text-right pb-2">
+         <span class="text-red-500">
+            Total Remaining
+            <span class="font-bold">
+               {{managerCurrentBudget?.totalBudgetRemainingAmount ? (managerCurrentBudget?.totalBudgetRemainingAmount |
+               currency:
+               "":"":"1.0-2") : 0 }}
+            </span>
+            out of {{ managerCurrentBudget?.totalBudgetAmount ? (managerCurrentBudget?.totalBudgetAmount | currency:
+            "":"":"1.0-2") : 0 }}
+         </span>
+      </div>
+      <!-- Table Records -->
+      <ng-container *ngIf="(records$ | async)?.length; else noResult" >
+         <!-- Table -->
+         <app-table-wrapper [records$]="records$" [config]="tableConfig">
+         </app-table-wrapper>
+
+      </ng-container>
+
+      <!-- No Result Template -->
+      <ng-template #noResult>
+         <h2 class="text-center pt-5">Sorry, No result, please try again </h2>
+      </ng-template>
+   </mat-dialog-content>
+   <mat-dialog-actions align="end">
+      <button mat-button class="actionBtn rounded-lg font-normal" mat-dialog-close>Cancel</button>
+   </mat-dialog-actions>
+</app-form-modal>

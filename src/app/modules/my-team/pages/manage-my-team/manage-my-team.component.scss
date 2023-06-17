@@ -1,0 +1,72 @@
+.toggle-subs-label {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: 30%;
+    width: 0;
+    height: 0;
+    border: 5px solid;
+    border-color: transparent #f8f9fa transparent transparent;
+  }
+}
+
+:host ::ng-deep {
+  mat-icon svg {
+    width: 100%;
+  }
+  .mat-form-field-infix{
+    width: 10rem;
+  }
+  // mat-table.mat-table {
+  //     max-height: 70vh !important;
+  //     overflow-y:hidden;
+  //     @media screen and (max-height:770px) {
+  //         max-height: 55vh !important;
+  //         overflow-y:scroll;
+  //     }
+  //     @media screen and (max-height:660px) {
+  //         max-height: 45vh !important;
+  //         overflow-y:scroll;
+  //     }
+
+  // }
+  mat-slide-toggle {
+    .mat-slide-toggle-bar {
+      display: none;
+    }
+    .mat-slide-toggle-content {
+      min-width: 100px;
+      background: var(--accent);
+      margin-left: 1rem;
+      border-radius: 5px;
+      text-align: center;
+      transition: background ease-in-out 0.2s;
+    }
+  }
+  mat-slide-toggle.mat-checked {
+    .mat-slide-toggle-content {
+      background: var(--primary);
+      color: white;
+    }
+  }
+  .filterBox{
+    &-search {
+      max-width: 300px;
+    }
+  }
+}
+
+.teamDetailsWrapper {
+  background-color: #f7f7f7;
+  min-height: 14rem;
+  max-height: 18rem;
+  height: 15rem;
+}
+
+.pre-line {
+  white-space: pre-line;
+  padding-right: 10px;
+}

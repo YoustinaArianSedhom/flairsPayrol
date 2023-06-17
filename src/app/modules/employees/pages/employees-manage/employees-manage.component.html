@@ -1,0 +1,40 @@
+<app-inner-page-layout>
+
+    <ng-container>
+        <h1>{{pageTitle}}</h1>
+        <div class="w-full mb-5 bg-white">
+            <app-employees-sync></app-employees-sync>
+        </div>
+        <div class="w-full">
+            <div class="md:flex md:justify-between md:items-center bg-white px-5 pt-2 pb-3 mb-7 filterBox">
+              <div class="flex items-center flex-grow ">
+                <mat-icon class="text-gray-400">filter_alt</mat-icon>
+                <app-search-input class="flex-grow filterBox-search" placeholder="Search using name or email"
+                  (searchChange)="search($event)" [search]="searchQuery" [withResult]="false"></app-search-input>
+              </div>
+          
+              <!-- Filters Wrapper -->
+              <div class="flex md:flex-nowrap flex-wrap justify-end items-baseline">
+                 <!-- Roles Filter -->
+                  <app-basic-select class="px-3 block" [emitPassedValue]="false" [options]="rolesOptions" [withLabel]="true"
+                    [config]="rolesSelectionConfig" (optionsChange)="onRoleSelect($event.value)" >
+                  </app-basic-select>
+
+                <app-basic-select class="w-44 px-3" [options]="employeeStatuses" [emitPassedValue]="false"
+            (optionsChange)="onStatusFilterChange($event.value)" [withLabel]="true" [config]="employeeStatusesConfig">
+          </app-basic-select>
+                <button (click)="resetFilter()"  mat-button color="warn" aria-label="Clear Filter">
+                    Clear
+                 </button>
+              </div>
+            </div>
+          </div>
+
+        <div class=" innerWrapper bg-white w-full p-1 lg:p-5 ">
+            <app-employees-table></app-employees-table>
+        </div>
+
+
+    </ng-container>
+
+</app-inner-page-layout>

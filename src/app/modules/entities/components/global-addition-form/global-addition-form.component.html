@@ -1,0 +1,34 @@
+
+<h2 mat-dialog-title>{{isUpdate ? 'Update Global Addition' : 'Add New Global Addition'}}</h2>
+<form [formGroup]="globalAdditionForm">
+
+   <!--! Global Addition name -->
+   <mat-form-field appearance="" class="w-full">
+      <mat-label>Global Addition Name</mat-label>
+      <input type="text" formControlName="name" placeholder="Global Addition Name" required matInput>
+      <mat-error>
+         <app-validation-error [control]="globalAdditionForm.get('name')" businessName="Global Addition Name">
+         </app-validation-error>
+      </mat-error>
+   </mat-form-field>
+
+
+   <!--! Social insurance percentage -->
+   <mat-form-field appearance="" class="w-full mt-3">
+      <mat-label>Percentage Value</mat-label>
+      <input type="number" min="0" max="100" formControlName="value" placeholder="Percentage Value" required matInput>
+      <span matSuffix>%</span>
+      <mat-error>
+         <app-validation-error [control]="globalAdditionForm.get('value')" businessName="Percentage Value">
+         </app-validation-error>
+      </mat-error>
+   </mat-form-field>
+
+</form>
+
+
+<div class="justify-end flex">
+   <button mat-button mat-dialog-close (click)="cancel()" class="cancelBtn rounded-none">Cancel</button>
+   <button mat-button cdkFocusInitial [disabled]="globalAdditionForm.invalid" class="actionBtn rounded-none"
+      (click)="onSubmit()"> {{isUpdate ? 'Update' : 'Add'}} </button>
+</div>

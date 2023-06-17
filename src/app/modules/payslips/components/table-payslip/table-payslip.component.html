@@ -1,0 +1,25 @@
+
+<ng-container *ngIf="!isTeamMode && (records$|async)?.length || isTeamMode && (teamRecords$|async)?.length; else noResult">
+
+
+    <!-- Table -->
+    <app-table-wrapper 
+    [records$]="isTeamMode ? teamRecords$ : records$" 
+    [config]="tableConfig" 
+    [classes]="pagination?.pageSize > 10 ? 'scroll' : 'no-scroll'"
+    (actionTaken)="mapTableActions($event)">
+    </app-table-wrapper>
+
+
+    <!-- Pagination -->
+    <app-pagination [config]="isProfileMode ? profilePagination : (isTeamMode ? teamPagination : pagination)" (paginationChange)="paginate($event)">
+    </app-pagination>
+
+</ng-container>
+
+
+<!-- No Result Template -->
+<ng-template #noResult>
+    <app-no-result></app-no-result>
+</ng-template>
+

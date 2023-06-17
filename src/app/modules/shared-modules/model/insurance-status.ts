@@ -1,0 +1,1 @@
+export const insuranceStatus = [{id:1, name:'Insured'},{id:2, name:'Not Insured'}]

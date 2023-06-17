@@ -1,0 +1,28 @@
+<app-inner-page-layout>
+  <ng-container>
+    <h1>{{ headInformation.title }}</h1>
+    <div class="w-full">
+      <div class="md:flex md:justify-between md:items-center bg-white px-5 pt-2 pb-3 mb-7 filterBox">
+        <div class="flex items-center flex-grow ">
+          <mat-icon class="text-gray-400">filter_alt</mat-icon>
+          <app-search-input class="flex-grow filterBox-search" placeholder="Search using name or email"
+            (searchChange)="fireSearchMyHrTeamMembersAction($event)" [search]="searchQuery" [withResult]="false"></app-search-input>
+        </div>
+    
+    
+        <!-- Filters Wrapper -->
+        <div class="flex md:flex-nowrap flex-wrap justify-end items-baseline">
+          <button (click)="fireSearchMyHrTeamMembersAction('')"  mat-button color="warn" aria-label="Clear Filter">
+            Clear
+         </button>
+      </div>
+    </div>
+  </div>
+
+    <div class="innerWrapper bg-white w-full p-1 lg:p-5">
+
+      <!-- Table -->
+      <app-table-hr-management></app-table-hr-management>
+    </div>
+  </ng-container>
+</app-inner-page-layout>

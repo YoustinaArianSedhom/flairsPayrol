@@ -1,0 +1,41 @@
+:host {
+   display: block;
+   ::ng-deep p {
+      margin: 0px;
+   }
+   h2 {
+    margin: 0px;
+   }
+   .mat-dialog-content {
+      // min-height: 300px;
+      min-width: 30vw;
+      @media screen and (max-width:1400px){
+          min-width: 40vw;
+      }
+      @media screen and (max-width:1024px){
+          min-width: 60vw;
+      }
+      @media screen and (max-width:767px){
+          min-width: 80vw;
+      }
+
+  }
+   ::ng-deep .mat-icon {
+      width: auto;
+   }
+   .info {
+      @media screen and (max-width:1024px){
+          font-size: 0.9rem;
+      }
+  }
+  .value {
+      @media screen and (max-width:1024px){
+          font-size: 0.9rem;
+      }  
+  }
+   mat-icon.note {
+      width: 20px;
+      display: inline-table;
+      height: 10px;
+   }
+}

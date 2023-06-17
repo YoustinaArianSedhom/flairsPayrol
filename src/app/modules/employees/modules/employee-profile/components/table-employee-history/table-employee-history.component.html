@@ -1,0 +1,17 @@
+<ng-container *ngIf="(employeeWorkflows$ |async)?.length">
+
+
+    <h1 class=" text-gray-400 ">{{employee.name}}'s Requests History</h1>
+
+    <!--__________Table_______________-->
+    <app-table-wrapper [config]='tableConfig' [records$]='employeeWorkflows$'
+        [classes]="pagination?.pageSize > 10 ? 'scroll' : 'no-scroll'" (actionTaken)="mapTableActions($event)">
+
+    </app-table-wrapper>
+
+
+    <!--_____________pagination__________-->
+    <!-- Pagination -->
+    <app-pagination [config]="pagination" (paginationChange)='firePaginateEmployeeWorkflows($event)'>
+    </app-pagination>
+</ng-container>

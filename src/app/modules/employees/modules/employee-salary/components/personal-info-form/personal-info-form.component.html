@@ -1,0 +1,79 @@
+<app-form-modal>
+    <ng-container>
+        <h2 mat-dialog-title>Update Personal Info</h2>
+        <mat-dialog-content class="mat-typography">
+            <form [formGroup]="personalInfoForm">
+
+                <!--! National ID -->
+                <mat-form-field appearance="" class="w-full mb-3">
+                    <mat-label>National ID</mat-label>
+                    <input type="text" formControlName="nationalId" placeholder="National ID" matInput>
+                    <mat-error>
+                        <app-validation-error [control]="personalInfoForm.get('nationalId')" businessName="National ID">
+                        </app-validation-error>
+                    </mat-error>
+                </mat-form-field>
+                <!--! National ID -->
+                <mat-form-field appearance="" class="w-full mb-3">
+                    <mat-label>HR Code</mat-label>
+                    <input type="text" formControlName="hrCode" placeholder="HR Code" matInput>
+                    <mat-error>
+                        <app-validation-error [control]="personalInfoForm.get('hrCode')" businessName="HR Code">
+                        </app-validation-error>
+                    </mat-error>
+                </mat-form-field>
+                <!--! Medical Insurance Number -->
+                <mat-form-field appearance="" class="w-full mb-3">
+                    <mat-label>Medical Insurance Number</mat-label>
+                    <input type="text" formControlName="medicalInsuranceNumber" placeholder="Medical Insurance Number" matInput>
+                    <mat-error>
+                        <app-validation-error [control]="personalInfoForm.get('medicalInsuranceNumber')" businessName="Medical Insurance Number">
+                        </app-validation-error>
+                    </mat-error>
+                </mat-form-field>
+                <!--! Social Insurance Number -->
+                <mat-form-field appearance="" class="w-full mb-3">
+                    <mat-label>Social Insurance Number</mat-label>
+                    <input type="text" formControlName="socialInsuranceNumber" placeholder="Social Insurance Number" matInput>
+                    <mat-error>
+                        <app-validation-error [control]="personalInfoForm.get('socialInsuranceNumber')" businessName="Social Insurance Number">
+                        </app-validation-error>
+                    </mat-error>
+                </mat-form-field>
+
+                <!--! Arabic Name -->
+                <mat-form-field class="w-full mb-3">
+                    <mat-label>Arabic Name</mat-label>
+                    <input type="text" formControlName="arabicName" placeholder="Arabic Name" matInput>
+                    <mat-error>
+                        <app-validation-error [control]="personalInfoForm.get('arabicName')" [customValidatorsErrorMessages]="{'pattern': 'Accept Arabic Letters only!'}" businessName="Arabic Name">
+                        </app-validation-error>
+                    </mat-error>
+                </mat-form-field>
+
+                <!--! Detailed Address -->
+                <mat-form-field class="w-full mb-3">
+                    <mat-label>Detailed Address</mat-label>
+                    <input type="text" formControlName="address" placeholder="Detailed Address" matInput>
+                    <mat-error>
+                        <app-validation-error [control]="personalInfoForm.get('address')" businessName="Detailed Address">
+                        </app-validation-error>
+                    </mat-error>
+                </mat-form-field>
+ 
+            </form>
+            <ng-container *ngIf="backendError?.errors?.length">
+                <mat-error class="w-full py-5 flex justify-center" >
+                        <span *ngFor="let item of backendError?.errors" class="block">
+                            {{item}}
+                        </span>
+                </mat-error>
+            </ng-container>
+            
+        </mat-dialog-content>
+        <mat-dialog-actions align="end">
+            <button mat-button mat-dialog-close class="cancelBtn rounded-none">Cancel</button>
+            <button mat-button cdkFocusInitial [disabled]="personalInfoForm.invalid" class="actionBtn rounded-none" (click)="submit()">Update </button>
+        </mat-dialog-actions>
+    </ng-container>
+</app-form-modal>

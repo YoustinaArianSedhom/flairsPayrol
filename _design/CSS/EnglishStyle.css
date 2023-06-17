@@ -1,0 +1,23 @@
+body { font-family: 'OpenSans' } 
+
+h1,h2,h3,h3,h4,h5, h6 , .action-footer a span , .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active { font-family: 'OpenSans-Bold' !important } 
+p, em , li, b, span { font-family: 'OpenSans' !important} 
+/*{font-family: 'OpenSans-Semibold' !important} */
+
+.language { font-family: 'TheSans-Bold' } 
+.floatDir { float: right } 
+
+/****************project start**********/
+.custom-checkbox label:before , .radioCheckBox input ~ label:before { margin-right: 7px}
+.social-links a { margin-right: 10px}
+.red-btn-effect::before, .red-btn-effect::after, .hover-effect::before, .hover-effect::after { -webkit-transform: translate(-100%,0); transform: translate(-100%,0); } 
+.focus-line{left:0}
+.profile-user-icon .dropdown-menu {left:-150px}
+.profile-user-icon .dropdown-menu:after {right: 22px}
+select, #multiple-checkboxes + .btn-group { background-position: center right 10px;}
+.dataTables_filter , .dataTables_paginate{float:right}
+.add-entity .fas{padding-right: 5px;}
+
+@media only screen and (max-width: 823px){
+.navigation-top ul li{padding-left: 20px}
+}

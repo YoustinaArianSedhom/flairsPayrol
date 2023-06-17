@@ -1,0 +1,198 @@
+<app-form-modal>
+
+    <h2 mat-dialog-title> {{isEdit ? "Update Entity Relation": 'Join Entity'}} </h2>
+
+
+
+    <mat-dialog-content *ngIf="entities?.length" class="mat-typography">
+
+        <form [formGroup]="employeeEntityForm" class="min-w-1/2">
+
+            <div class="grid grid-cols-1 gap-3">
+
+
+
+                <!-- Entity -->
+                <app-basic-select *ngIf="!isEdit" [withLabel]="true" (selectionChange)="onEntitySelect($event)" class="flex-100" [config]="{
+                    placeholder: 'Choose an Entity',
+                    options: entities
+                }"></app-basic-select>
+
+
+
+                <!-- Personal Exemption -->
+                <mat-form-field>
+                    <mat-label>Personal Exemption (Monthly)</mat-label>
+                    <input matInput type="number" formControlName="monthlyPersonalExemptionAmount" min="0" step="500"
+                        placeholder="Personal Exemption (Monthly)" (change)="onSalaryNetFactorsChange()">
+                    <mat-error>
+                        <app-validation-error [control]="employeeEntityForm.get('monthlyPersonalExemptionAmount')"
+                            businessName="Personal Exemption">
+                        </app-validation-error>
+                    </mat-error>
+
+
+                </mat-form-field>
+
+
+                <!-- Gross Salary -->
+                <mat-form-field>
+                    <mat-label>Gross Salary (Monthly)</mat-label>
+                    <input matInput type="number" formControlName="monthlyGrossSalary" step="500"
+                        placeholder="Gross Salary (Monthly)" autocomplete="off" (change)="onGrossSalaryChange()">
+
+                    <mat-error>
+
+                        <app-validation-error [control]="employeeEntityForm.get('monthlyGrossSalary')"
+                            businessName="Gross Salary">
+                        </app-validation-error>
+
+                    </mat-error>
+
+                </mat-form-field>
+
+
+                
+                <mat-form-field>
+                    <mat-label>Base Social insurance (Monthly)</mat-label>
+                    <input matInput type="number" formControlName="monthlyBaseSocialInsuranceAmount" min="0" step="500"
+                        placeholder="Base Social insurance (Monthly)" (change)="onSalaryNetFactorsChange()"
+                        autocomplete="off">
+
+                    <mat-error>
+                        <app-validation-error [control]="baseSocialInsuranceControl" businessName="Base Social insurance">
+                        </app-validation-error>
+                    </mat-error>
+
+                </mat-form-field>
+                <mat-error *ngIf="employeeEntityForm.errors?.rangeError">
+                    {{employeeEntityForm.errors?.rangeError}}
+                </mat-error>
+               
+
+
+                <mat-form-field>
+                    <mat-label>Social insurance (Monthly)</mat-label>
+                    <input matInput type="number" formControlName="monthlySocialInsuranceAmount" min="0" step="500"
+                        placeholder="Social insurance (Monthly)" (change)="onSalaryNetFactorsChange()"
+                        autocomplete="off">
+
+                    <span *ngIf="socialInsurancePercentage" matSuffix> {{socialInsurancePercentage}}%</span>
+
+                    <mat-error>
+                        <app-validation-error [control]="socialInsuranceControl" businessName="Social insurance">
+                        </app-validation-error>
+                    </mat-error>
+
+                </mat-form-field>
+              
+
+
+                <mat-form-field>
+                    <mat-label>Net salary (Monthly)</mat-label>
+                    <input matInput type="number" formControlName="monthlyNetSalary" min="0" step="500"
+                        placeholder="Net salary (Monthly)">
+
+                    <mat-error>
+
+                        <app-validation-error [control]="employeeEntityForm.get('monthlyNetSalary')"
+                            businessName="Net salary">
+                        </app-validation-error>
+                    </mat-error>
+
+
+                </mat-form-field>
+
+                <!-- {{entities | json}} -->
+
+
+
+
+
+                <section class="grid grid-cols-1">
+
+
+                    <!-- Salary Levels -->
+                    <!-- <app-basic-select [config]="{
+                        placeholder: 'Salary Level',
+                        options: salaryLevels,
+                        value: employeeEntityForm.get('salaryLevelId')?.value || salaryLevels[0]?.id,
+                        disabled: !!isEdit
+                        }" (optionsChange)="onSalaryLevelChange($event.value)">
+                    </app-basic-select> -->
+
+
+                    <!-- <ng-container *ngIf="salaryLevelShowcase?.id && isEdit">
+                        <figure class="text-left">
+                            <div
+                                class="overflow-hidden shadow-md duration-500 bg-gray-50">
+                                <div class="space-y-2">
+
+                                    <div class="p-2">
+                                        <div class="font-bold text-base mb-2">Salary Level Details</div>
+                                        <div class="pl-2 pt-2">
+
+                                            <div>
+                                                <span class="font-medium mr-2">Name :</span> {{salaryLevelShowcase.name}}
+                                            </div>
+
+                                            <div>
+                                                <span class="font-medium mr-2">From :</span> {{salaryLevelShowcase.from |
+                                                currency:'EGP '}}
+                                            </div>
+                                            <div>
+                                                <span class="font-medium mr-2">To :</span> {{salaryLevelShowcase.to |
+                                                currency:'EGP '}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </figure>
+                    </ng-container> -->
+
+
+                </section>
+
+
+
+                <!-- Employee Type -->
+                <mat-radio-group aria-label="Employee Type" formControlName="employeeType" class="mt-3">
+                    <mat-label>Employee Type</mat-label>
+                    <div class="pt-3">
+                        <mat-radio-button [value]="0" class="mr-2"> Employee </mat-radio-button>
+                        <mat-radio-button disabled [value]="1"> Contractor </mat-radio-button>
+                    </div>
+                </mat-radio-group>
+
+
+                <!-- Joined Date -->
+                <mat-form-field class="w-full my-5">
+                    <mat-label>Join Date</mat-label>
+                    <input matInput formControlName="joinedDate" [min]="datePickerConfig.min" [max]="datePickerConfig.max"
+                        [matDatepicker]="joinDatePicker" disabled>
+                    <mat-datepicker-toggle matSuffix [for]="joinDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker disabled='false' #joinDatePicker></mat-datepicker>
+                </mat-form-field>
+
+
+
+
+
+
+            </div>
+
+
+        </form>
+
+    </mat-dialog-content>
+
+
+
+    <mat-dialog-actions align="end">
+        <button mat-button class="cancelBtn rounded-none" mat-dialog-close>Cancel</button>
+        <button mat-button class="actionBtn rounded-none" cdkFocusInitial [disabled]="employeeEntityForm.invalid"
+            (click)="submit()">
+            {{isEdit ? 'Update' : 'Join & Submit'}} </button>
+    </mat-dialog-actions>
+</app-form-modal>

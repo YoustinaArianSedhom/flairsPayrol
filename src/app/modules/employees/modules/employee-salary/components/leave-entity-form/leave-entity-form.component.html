@@ -1,0 +1,45 @@
+<app-form-modal>
+
+    <h2 mat-dialog-title>{{leaveEntityForm.controls.leftDate.value | date}}</h2>
+
+
+
+    <mat-dialog-content class="mat-typography">
+
+        <form [formGroup]="leaveEntityForm" class="w-50">
+
+            <div class="flex flex-col">
+
+
+
+
+
+                <!-- Joined Date -->
+                <mat-form-field class="w-full my-5">
+                    <mat-label>left Date</mat-label>
+                    <input matInput formControlName="leftDate" [matDatepicker]="joinDatePicker" disabled>
+                    <mat-datepicker-toggle matSuffix [for]="joinDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker disabled='false' #joinDatePicker></mat-datepicker>
+                </mat-form-field>
+
+
+              
+
+
+            </div>
+
+
+        </form>
+
+    </mat-dialog-content>
+
+
+
+
+    <mat-dialog-actions align="end">
+        <button mat-button class="cancelBtn rounded-none" mat-dialog-close>Cancel</button>
+        <button mat-button class="actionBtn rounded-none" cdkFocusInitial [disabled]="leaveEntityForm.invalid"
+            (click)="submit()">
+            {{submitButtonTextContent}}</button>
+    </mat-dialog-actions>
+</app-form-modal>

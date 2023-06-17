@@ -1,0 +1,100 @@
+<app-form-modal>
+
+    <h2 mat-dialog-title>{{isEdit ? 'Update': 'Add'}} Salary Level</h2>
+
+
+
+    <mat-dialog-content class="mat-typography">
+
+        <form [formGroup]="salaryLevelForm" class="w-50">
+
+            <div class="flex flex-col">
+
+
+                <mat-form-field>
+                    <mat-label>Level name</mat-label>
+                    <input matInput type="text" formControlName="name" placeholder="Level name">
+
+                    <mat-error>
+
+                        <app-validation-error [control]="salaryLevelForm.get('name')" businessName="Level name">
+                        </app-validation-error>
+                    </mat-error>
+
+
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>From</mat-label>
+                    <input matInput step="500" min="0" type="number" formControlName="from" placeholder="From">
+
+                    <mat-error>
+
+                        <app-validation-error [control]="salaryLevelForm.get('from')" businessName="Level From">
+                        </app-validation-error>
+                    </mat-error>
+
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>To</mat-label>
+                    <input matInput step="500" min="0" type="number" formControlName="to" placeholder="To">
+
+                    <mat-error>
+
+                        <app-validation-error [control]="salaryLevelForm.get('to')" businessName="Level To">
+                        </app-validation-error>
+                    </mat-error>
+
+                </mat-form-field>
+                <mat-error *ngIf="salaryLevelForm.errors?.rangeError">
+                    {{salaryLevelForm.errors?.rangeError}}
+                </mat-error>
+
+                <mat-form-field>
+                    <mat-label>Description</mat-label>
+                    <textarea matInput formControlName="description" placeholder="Description"
+                        (keydown.enter)="confirmText(salaryLevelForm.get('description').value);false"></textarea>
+                    <mat-hint class="text-right">
+                        {{salaryLevelForm.get('description').value.length || 0}} / 500
+                    </mat-hint>
+                    <mat-error>
+                        <app-validation-error [control]="salaryLevelForm.get('description')" businessName="Description">
+                        </app-validation-error>
+                    </mat-error>
+                </mat-form-field>
+
+            </div>
+
+
+            <!-- <mat-error *ngIf="salaryLevelForm.errors?.rangeError" style="color: white !important"
+                class="text-left font-medium text-sm py-4 pl-4 mt-10 bg-red-500 shadow-lg transition-opacity"> -
+                {{salaryLevelForm.errors.rangeError}}</mat-error> -->
+            <div class="w-full bg-red-500 text-white mt-5" *ngIf="backendError?.errorMessage">
+                <div class="flex justify-between items-center container mx-auto py-2 px-6">
+                    <div class="flex">
+                        <svg viewBox="0 0 40 40" class="h-6 w-6 fill-current">
+                            <path
+                                d="M20 3.36667C10.8167 3.36667 3.3667 10.8167 3.3667 20C3.3667 29.1833 10.8167 36.6333 20 36.6333C29.1834 36.6333 36.6334 29.1833 36.6334 20C36.6334 10.8167 29.1834 3.36667 20 3.36667ZM19.1334 33.3333V22.9H13.3334L21.6667 6.66667V17.1H27.25L19.1334 33.3333Z">
+                            </path>
+                        </svg>
+                        <span class="mx-3 backendError">{{backendError.errors[0] || backendError.errorMessage}}</span>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+
+    </mat-dialog-content>
+
+
+
+
+    <mat-dialog-actions align="end">
+        <button mat-button class="cancelBtn rounded-none" mat-dialog-close>Cancel</button>
+        <button mat-button class="actionBtn rounded-none" cdkFocusInitial [disabled]="salaryLevelForm.invalid"
+            (click)="submit()">
+            {{isEdit ? 'Update' : 'Add'}} </button>
+    </mat-dialog-actions>
+</app-form-modal>

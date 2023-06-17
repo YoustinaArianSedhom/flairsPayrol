@@ -1,0 +1,31 @@
+:host {
+    .mat-dialog-content {
+        // min-height: 300px;
+        min-width: 30vw;
+        @media screen and (max-width:1400px){
+            min-width: 40vw;
+        }
+        @media screen and (max-width:1024px){
+            min-width: 60vw;
+        }
+        @media screen and (max-width:767px){
+            min-width: 80vw;
+        }
+
+    }
+    mat-icon.note {
+        width: 20px;
+        display: inline-table;
+        height: 10px;
+    }
+    .info {
+        @media screen and (max-width:1024px){
+            font-size: 0.9rem;
+        }
+    }
+    .value {
+        @media screen and (max-width:1024px){
+            font-size: 0.9rem;
+        }  
+    }
+}

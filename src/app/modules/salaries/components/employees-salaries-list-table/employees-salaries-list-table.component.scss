@@ -1,0 +1,29 @@
+:host ::ng-deep {
+    mat-cell, mat-header-cell {
+        min-width: 100px;
+        overflow-wrap: anywhere;
+        padding: 0 0.5rem;
+        @media screen and (max-width:1550px){
+            min-width: 150px !important;
+        }
+        @media screen and (max-width:1400px){
+            min-width: 150px !important;
+        }
+        @media screen and (max-width:1300px){
+            min-width: 150px !important;
+        }
+        @media screen and (max-width:768px){
+            min-width: 120px!important;
+        }
+        
+        
+        
+    }
+    mat-row {
+        border-bottom: 1px solid var(--primaryAlt);
+    }
+    .cdk-column-flairstechInsuranceAmount,.cdk-column-employeeInsuranceAmount{
+        min-width: 200px!important;
+    }
+
+}

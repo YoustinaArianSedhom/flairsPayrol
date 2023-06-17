@@ -1,0 +1,33 @@
+<div class="uploader-wrapper flex flex-col">
+    <ngx-awesome-uploader 
+    [adapter]="adapter"
+    [uploadType]="'flat'"
+    [fileMaxCount]="1"
+    [fileMaxSize]=8
+    [fileExtensions]="['xlsx']"
+    [customValidator]="myCustomValidator"
+    [customValidator]="myCustomValidator"
+    [captions]="captions"
+    [showPreviewContainer]="true"
+    [showeDragDropZone]="DropZoneIsShown"
+    (validationError)="onValidationError($event)"
+    (removeSuccess)="onRemoveSuccess($event)"
+    (fileAdded)="onFileAdded($event)"
+    (uploadFail)="onUploadFail($event)"
+    (uploadSuccess)="onUploadSuccess($event)"
+    >
+    </ngx-awesome-uploader>
+    
+    <div class="error mt-5 text-red-500 text-center">
+        {{validationError}}
+    </div>
+
+    <div *ngIf="addedAllocations">
+        <!-- {{addedAllocations | json }} -->
+        <app-table-wrapper [records$]="records$" [config]="tableConfig">
+        </app-table-wrapper>
+    </div>
+
+
+
+</div>

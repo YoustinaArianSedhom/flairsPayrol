@@ -1,0 +1,49 @@
+<app-form-modal>
+
+
+    <h2 mat-dialog-title>{{data.workflowTypeName}} Details</h2>
+
+
+
+    <mat-dialog-content class="mat-typography">
+
+        <div class="grid gap-y-3" *ngIf="myWorkflowDetails.length; else noResult">
+
+            <div *ngFor="let item of myWorkflowDetails" class="fieldGroup block 2xl:flex">
+                <div class="info font-bold mr-2">{{item.name}} :</div>
+                <div class="value">
+
+                    <a *ngIf="isLink(item.value); else noLink" [href]="item.value" target="blank">Link</a>
+
+                    <ng-template #noLink>
+
+                        <span> {{ valueToBeDisplayed(item.value)}}</span>
+                    </ng-template>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </mat-dialog-content>
+
+
+
+
+    <mat-dialog-actions align="end">
+        <button mat-button cdkFocusInitial mat-dialog-close class="actionBtn rounded-none"> Close </button>
+    </mat-dialog-actions>
+
+
+
+
+    <!-- No Result Template -->
+    <ng-template #noResult>
+        <app-no-result message="There is no more additional information to show"></app-no-result>
+    </ng-template>
+
+
+
+
+</app-form-modal>

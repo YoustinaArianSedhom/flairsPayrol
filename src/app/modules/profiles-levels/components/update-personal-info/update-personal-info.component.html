@@ -1,0 +1,57 @@
+<app-form-modal>
+    <ng-container>
+        <h2 mat-dialog-title>Update Personal Info</h2>
+        <mat-dialog-content class="mat-typography w-96">
+            <form [formGroup]="personalInfoForm">
+
+                <!--! National ID -->
+                <mat-form-field appearance="" class="w-full mb-3">
+                    <mat-label>National ID</mat-label>
+                    <input type="text" formControlName="nationalId" placeholder="National ID" matInput>
+                    <mat-error>
+                        <app-validation-error [control]="personalInfoForm.get('nationalId')" businessName="National ID">
+                        </app-validation-error>
+                    </mat-error>
+                </mat-form-field>
+                <!--! National ID -->
+                <mat-form-field appearance="" class="w-full mb-3">
+                    <mat-label>HR Code</mat-label>
+                    <input type="text" formControlName="hrCode" placeholder="HR Code" matInput>
+                    <mat-error>
+                        <app-validation-error [control]="personalInfoForm.get('hrCode')" businessName="HR Code">
+                        </app-validation-error>
+                    </mat-error>
+                </mat-form-field>
+                <!--! Medical Insurance Number -->
+                <mat-form-field appearance="" class="w-full mb-3">
+                    <mat-label>Medical Insurance Number</mat-label>
+                    <input type="text" formControlName="medicalInsuranceNumber" placeholder="Medical Insurance Number" matInput>
+                    <mat-error>
+                        <app-validation-error [control]="personalInfoForm.get('medicalInsuranceNumber')" businessName="Medical Insurance Number">
+                        </app-validation-error>
+                    </mat-error>
+                </mat-form-field>
+                <!--! Social Insurance Number -->
+                <mat-form-field appearance="" class="w-full mb-3">
+                    <mat-label>Social Insurance Number</mat-label>
+                    <input type="text" formControlName="socialInsuranceNumber" placeholder="Social Insurance Number" matInput>
+                    <mat-error>
+                        <app-validation-error [control]="personalInfoForm.get('socialInsuranceNumber')" businessName="Social Insurance Number">
+                        </app-validation-error>
+                    </mat-error>
+                </mat-form-field>
+ 
+            </form>
+            <mat-error class="w-full py-5 flex justify-center text-center" *ngIf="backendError">
+                <span *ngFor="let error of backendError.errors">
+                    {{error}}
+                </span>
+            </mat-error>
+            
+        </mat-dialog-content>
+        <mat-dialog-actions align="end">
+            <button mat-button mat-dialog-close class="cancelBtn rounded-none">Cancel</button>
+            <button mat-button cdkFocusInitial [disabled]="personalInfoForm.invalid" class="actionBtn rounded-none" (click)="submit()">Update </button>
+        </mat-dialog-actions>
+    </ng-container>
+</app-form-modal>

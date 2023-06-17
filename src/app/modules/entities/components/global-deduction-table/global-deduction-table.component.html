@@ -1,0 +1,17 @@
+<ng-container *ngIf="(globalDeductions$ | async).length; else noResult">
+
+    <app-table-wrapper
+    [records$]="globalDeductions$"
+    [config]="tableConfig"
+    (actionTaken)="mapTableAction($event)">
+    </app-table-wrapper>
+
+    <!-- Pagination -->
+    <!-- <app-pagination [config]="pagination$ | async" (paginationChange)="paginate($event)">
+    </app-pagination> -->
+
+</ng-container>
+
+<ng-template #noResult>
+    <app-no-result [message]="'Sorry, No result'"></app-no-result>
+</ng-template>

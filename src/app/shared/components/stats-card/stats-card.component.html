@@ -1,0 +1,18 @@
+<div class="text-center">
+
+    <!-- Incase that passed media is image -->
+    <div *ngIf="img" class="icon text-center w-14 m-auto">
+        <img [src]="img" alt="">
+    </div>
+
+
+    <!-- Incase that passed media is icon -->
+    <mat-icon *ngIf="icon && icon.isSVG" class="icon stat-card-icon" inline="true" [svgIcon]="icon.name"></mat-icon>
+
+
+
+    <!-- Stat Value -->
+    <div class="number text-4xl text-center py-4">{{value}}</div>
+    <!-- Stat Label -->
+    <div class="label p-3 text-center">{{label}}</div>
+</div>

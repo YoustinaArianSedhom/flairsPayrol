@@ -1,0 +1,30 @@
+:host{
+    ::ng-deep{
+       .mat-button{
+          font-weight: normal;
+       }
+       .mat-row,
+       .mat-header-row{
+          min-height: 30px;
+          &:last-child{
+ 
+             border-bottom: 0;
+          }
+       }
+       .mat-header-cell{
+          color: black;
+       }
+       .mat-table{
+          overflow-y: auto;
+       }
+       .mat-header-cell,
+       .mat-cell{
+          background: #f7f7f7;
+       }
+       @media screen and (max-width: 768px) {
+          mat-table:not(.custom-table) mat-cell,mat-table:not(.custom-table) mat-header-cell{
+             min-width: 100px;
+          }
+       }
+    }
+ }

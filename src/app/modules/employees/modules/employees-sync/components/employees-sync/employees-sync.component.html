@@ -1,0 +1,36 @@
+<div *ngIf="syncDetails">
+  <div class=" flex flex-col p-4 text-left md:flex-row md:items-center md:justify-between bg-white sync-wrapper">
+    <div class="text-md font-medium ">
+
+      <div class="text-gray-900">Last Synced by
+        
+        
+        <!-- Manual Sync -->
+        <app-link *ngIf="syncDetails.lastSyncedBy; else automaticSync" 
+        [link]="'/employees/view/' + syncDetails.lastSyncedBy?.id" 
+        [blank]="false"
+        class="mr-2"
+        >
+          {{syncDetails.lastSyncedBy?.name}}
+        </app-link>
+
+        <!-- Auto Sync -->
+        <ng-template #automaticSync>
+          System
+        </ng-template> 
+        on
+        <span class="text-blue-900"> {{syncDetails?.lastSyncedDate | date:'medium'}}</span>
+      </div>
+      <div class="text-purple-500"></div>
+    </div>
+
+    <div class="mt-3 md:mt-0 md:ml-2">
+      <button
+      matTooltip="Sync Employees"
+      [matTooltipPosition]="'above'"
+      mat-button mat-icon-button (click)="sync()">
+        <mat-icon>cached</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<app-form-modal>
+
+    <h2 mat-dialog-title>Update Profile Level</h2>
+
+
+
+    <mat-dialog-content class="mat-typography pl-3">
+
+
+        <app-basic-select [withLabel]="true" [config]="selectConfig" [options]="salaryLevels"
+            (optionsChange)="onSalaryLevelChange($event.value)">
+        </app-basic-select>
+
+        <section *ngIf="salaryLevels">
+            {{getSelectSalaryLevelRange(salaryLevels)}}
+
+            <div class="fieldGroup 2xl:flex shadow-sm p-2 my-2">
+                <span class="info font-bold mr-1">From : </span>
+                <span class="value">{{ selectedSalaryLevelRange.from | currency:'':'':'1.0'}}</span>
+            </div>
+
+            <div class="fieldGroup 2xl:flex shadow-sm p-2 my-2">
+                <span class="info font-bold mr-1">To : </span>
+                <span class="value">{{ selectedSalaryLevelRange.to | currency:'':'':'1.0'}}</span>
+            </div>
+
+        </section>
+    </mat-dialog-content>
+
+
+    <mat-dialog-actions align="end">
+        <button mat-button class="cancelBtn rounded-none" mat-dialog-close>Cancel</button>
+        <button mat-button class="actionBtn rounded-none" mat-dialog-close cdkFocusInitial
+            (click)="submit()">Update</button>
+
+    </mat-dialog-actions>
+
+</app-form-modal>

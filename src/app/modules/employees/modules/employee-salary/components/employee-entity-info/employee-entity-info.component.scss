@@ -1,0 +1,30 @@
+:host ::ng-deep {   
+    .responsiveFix {
+            min-height: 400px !important;
+    }
+    .entitiesHistory {
+        // border: 10px solid var(--primary)
+        // color: 
+    }
+
+    .label {
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 0.2rem 0.5rem;
+        border-radius: 0px 0px 5px 0;
+        color: black;
+        &.current {
+            // color: #43a047 !important;
+            background-color: rgb(169, 255, 166);
+        }
+        &.history {
+            // color: #d32f2f;
+            // left: auto;
+            // right: 0;
+            // border-radius: 0 0 0 5px;
+            background-color: rgb(253, 180, 180);
+        }
+    }
+    
+}

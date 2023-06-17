@@ -1,0 +1,10 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 147 164" width="147" height="164">
+	<style>
+		.s0 { fill: #d13b27 } 
+		.s1 { fill: #373636 } 
+	</style>
+	<g id="Rectangle_7">
+		<path id="Layer" class="s0" d="m0.1 0.4h147v34.1l-113.5 0.3v128.8h-4.1l-6-17.2-23.4-0.1v-145.9z"/>
+	</g>
+	<path id="Layer" class="s1" d="m64 85.5v-21.3l82.1 0.1v82.1h-82.1v-30.4h39.5v-30.5h-39.5z"/>
+</svg>

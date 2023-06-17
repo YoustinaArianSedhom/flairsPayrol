@@ -1,0 +1,41 @@
+<app-inner-page-layout>
+
+  <h1>Raises</h1>
+
+  <div class="text-right my-3">
+
+    <button mat-button mat-flat-button class="actionBtn rounded-none col-span-2 lg:mt-0"
+    (click)="fireExportMyRaises()">Export Data To Excel
+  </button>
+  </div>
+
+  <div class="w-full">
+    <div class="md:flex md:justify-between md:items-center bg-white px-5 pt-2 pb-3 mb-7 filterBox sm:flex-wrap">
+      <div class="flex md:flex-row md:justify-between md:items-center flex-col flex-grow  px-3">
+
+      </div>
+      <div class="date-with-label float-left">
+        <!-- Date Filters Wrapper -->
+        <div class="flex md:flex-nowrap flex-wrap justify-md-end items-baseline dateField">
+
+          <mat-form-field>
+            <mat-label>Month and Year</mat-label>
+            <input matInput [matDatepicker]="dp" [max]="maxDate" [min]="minDate" [formControl]="date" readonly>
+            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+            <mat-datepicker #dp startView="year" [startAt]="maxDate" (monthSelected)="setMonthAndYear($event, dp)"
+              panelClass="raises-datepicker-toggle" [calendarHeaderComponent]="exampleHeader">
+            </mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <button (click)="resetFilter()" mat-button color="warn" aria-label="Clear Filter">
+        Clear
+      </button>
+    </div>
+  </div>
+  <div class="innerWrapper bg-white w-full p-1 lg:p-5 mt-5">
+    <app-raises-table></app-raises-table>
+
+  </div>
+</app-inner-page-layout>

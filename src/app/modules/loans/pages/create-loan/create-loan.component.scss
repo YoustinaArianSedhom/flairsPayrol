@@ -1,0 +1,24 @@
+.payment-plan-data{
+    display: block;
+    overflow: auto;
+}
+.text-right {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.cancel-button{
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+@media (min-width: 768px) {
+    .md\:w-1\/4 {
+        width: 25%;
+    }
+    .md\:w-1\/3 {
+        width: 33.3333333%;
+    }
+    .md\:w-1\/2 {
+        width: 50%;
+    }
+}

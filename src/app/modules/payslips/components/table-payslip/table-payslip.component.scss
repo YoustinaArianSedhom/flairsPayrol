@@ -1,0 +1,26 @@
+::ng-deep {
+  .mat-column-actual_total_monthly_gross_salary{
+    padding-right: 5px !important;
+  }
+  .mat-header-cell.mat-column-more {
+    visibility: hidden;
+  }
+  .mat-column-more {
+    min-width: 50px !important;
+    @media screen and (min-width: 1551px) {
+      min-width: 50px !important;
+    }
+    @media screen and (max-width: 1550px) {
+      min-width: 80px !important;
+    }
+    @media screen and (max-width: 1400px) {
+      min-width: 80px !important;
+    }
+    @media screen and (max-width: 1300px) {
+      min-width: 50px !important;
+    }
+    @media screen and (max-width: 768px) {
+      min-width: 40px !important;
+    }
+  }
+}

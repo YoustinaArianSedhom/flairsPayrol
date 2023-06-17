@@ -1,0 +1,78 @@
+.type {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    .ribbon {
+        z-index: 50;
+        right: 15px;
+        bottom: 15px;
+
+    }
+    &:after {
+        width: 120px;
+        height: 120px;
+        content: "";
+        display: block;
+        position: absolute;
+        border-radius: 50%;
+        right: -50px;
+        bottom: -50px;
+        z-index: 0;
+        opacity: 0.4;
+    }
+    &.addition {
+        .ribbon  {
+            fill: #43a047 !important;
+        }
+        &:after {
+            background-color: rgb(169, 255, 166);
+        }
+    }
+    &.deduction {
+        .ribbon {
+            fill: #d32f2f;
+        }
+        &:after {
+            background-color: rgb(253, 180, 180);
+        }
+    }
+}
+.value {
+    &.addition .record {
+        color: #43a047;
+
+    }
+    &.deduction .record {
+        color: #d32f2f;
+    }
+}
+
+.radius {
+    border-radius: 5px;
+}
+
+.isCurrent {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0px 0px 5px 0;
+    color: black;
+    &.addition {
+        // color: #43a047 !important;
+        background-color: rgb(169, 255, 166);
+    }
+    &.deduction {
+        // color: #d32f2f;
+        background-color: rgb(253, 180, 180);
+    }
+}
+
+:host ::ng-deep {
+    .themeIcon {
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+}

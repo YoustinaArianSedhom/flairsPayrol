@@ -1,0 +1,45 @@
+
+
+.innerWrapper{
+    min-height: calc(100vh - 200px);
+    
+    @media screen and (max-height:660px) {
+        min-height: calc(100vh - 400px) !important;
+    }
+}
+
+:host ::ng-deep {
+    mat-table.mat-table {
+        max-height: 70vh !important;
+        overflow-y:hidden;
+        @media screen and (max-height:770px) {
+            max-height: 55vh !important;
+            overflow-y:scroll;
+        }
+        @media screen and (max-height:660px) {
+            max-height: 45vh !important;
+            overflow-y:scroll;
+        }
+
+    }
+    mat-slide-toggle {
+        .mat-slide-toggle-bar {
+            display: none;
+        }
+        .mat-slide-toggle-content {
+            min-width: 100px;
+            background: var(--accent);
+            margin-left: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            transition: background ease-in-out 0.2s;
+        }
+        
+    }
+    mat-slide-toggle.mat-checked {
+        .mat-slide-toggle-content{
+            background: var(--primary);
+            color: white;
+        }
+    }
+}

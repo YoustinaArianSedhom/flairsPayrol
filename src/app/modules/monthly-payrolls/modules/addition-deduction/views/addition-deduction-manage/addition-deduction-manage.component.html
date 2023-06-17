@@ -1,0 +1,57 @@
+
+<app-inner-page-layout>
+    <ng-container>
+        <div>
+            <h1>Additions and Deductions for {{records.profileName}}</h1>
+                <div class=" innerWrapper bg-white w-full p-1 lg:p-5 mt-5">
+
+                    <div class="lg:flex justify-end grid grid-cols-2 items-center">
+                        <!-- <button mat-button mat-flat-button class="actionBtn rounded-none col-span-2 mt-3 lg:mt-0" (click)="addNewRecord()">Add New Addition & Deduction</button> -->
+                    </div>
+
+                    <mat-accordion multi class="grid md:grid-cols-1 lg:grid-cols-1 gap-3 mt-5" >
+                        <mat-expansion-panel [expanded]="true" showToggle disabled>
+                            <mat-expansion-panel-header>
+                            <mat-panel-title class="flex items-center">
+                                <img src="../../../../../../../assets/images/addMoney.svg" alt="" class="w-10 mr-3">
+                                <h3 class="m-0 text-black">List of Additions</h3>
+                            </mat-panel-title>
+                            <mat-panel-description class="flex justify-end">
+                                <!-- This is a summary of the additionTypes -->
+                                <button *ngIf="isEditable == 'true'" mat-button mat-flat-button class="actionBtn rounded-none col-span-2 mt-3 lg:mt-0" (click)="addNewRecord({additionTypeId:1})">Add New Addition</button>
+                            </mat-panel-description>
+                            </mat-expansion-panel-header>
+                                <app-addition-deduction-list
+                                [isEditable]="isEditable"
+                                (additionDeductionDelete)="deleteRecord($event, 'addition')"
+                                (additionDeductionUpdate)="updateRecord($event, 'addition')"
+                                
+                                class="grid grid-cols-1 gap-3 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3" *ngIf="records" [records]="records.additions" [type]="'addition'">
+                                </app-addition-deduction-list>
+                        </mat-expansion-panel>
+
+
+                        <mat-expansion-panel [expanded]="true" showToggle  disabled>
+                            <mat-expansion-panel-header>
+                            <mat-panel-title class="flex items-center">
+                                <img src="../../../../../../../assets/images/tax-calculate.svg" alt="" class="w-10 mr-3">
+                                <h3 class="m-0 text-black">List of Deductions</h3>
+                            </mat-panel-title>
+                            <mat-panel-description class="flex justify-end">
+                                <button *ngIf="isEditable == 'true'"  mat-button mat-flat-button class="actionBtn rounded-none col-span-2 mt-3 lg:mt-0" (click)="addNewRecord({deductionTypeId:1})">Add New Deduction</button>
+                                <!-- This is a summary of the deductionTypes -->
+                            </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <app-addition-deduction-list
+                            [isEditable]="isEditable"
+                            (additionDeductionDelete)="deleteRecord($event, 'deduction')"
+                            (additionDeductionUpdate)="updateRecord($event, 'deduction')"
+                            class="grid grid-cols-1 gap-3 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3" *ngIf="records" [records]="records.deductions" [type]="'deduction'">
+                            </app-addition-deduction-list>
+                        </mat-expansion-panel>
+                    </mat-accordion >
+                </div>
+        </div>
+    </ng-container>
+</app-inner-page-layout>
+

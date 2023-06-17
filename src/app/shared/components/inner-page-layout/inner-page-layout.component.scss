@@ -1,0 +1,7 @@
+.pageWrapper {
+    background-color: #f7f7f7;
+    overflow-y: scroll;
+    height: calc(100vh - 50px);
+    @media screen and (max-width:1024px){
+    }
+}

@@ -1,0 +1,17 @@
+:host ::ng-deep {
+    .pageWrapper .dateField .calendar-input-container {
+        box-shadow: none;
+    }
+    .calendar-dropdown .mat-icon{
+        height: 10px;
+    }
+}
+.date-with-label {
+    position: relative;
+    label {
+        font-size: 10px;
+        position: absolute;
+        left: 20px;
+        top: -2px;
+    }
+}

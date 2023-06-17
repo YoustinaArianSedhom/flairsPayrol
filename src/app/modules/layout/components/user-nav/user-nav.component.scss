@@ -1,0 +1,48 @@
+
+      .userNav {
+        display: block;
+        width: 30px;
+        height: 30px;
+        background: var(--accentAlt);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .userControl {
+        background: white;
+        min-width: 180px;
+        text-align: center;
+        top: 52px;
+        position: absolute;
+        right: 0;
+        opacity: 0;
+        transition: all ease-in-out 0.2s;
+        pointer-events: none;
+        @media screen and (max-width:768px){
+          top: 33px;
+        }
+        li:first-of-type {
+          p {
+            margin: 0;
+            font-size: 12px;
+            span {
+              font-weight: bold;
+            }
+          }
+        }
+      }
+      .userControl.isShown {
+        opacity: 1;
+        top: 47px;
+        pointer-events: auto;
+        
+      }
+      .userControl.isShown li:hover{
+        color:var(--primary) !important;
+      }
+
+section {
+  display: flex;
+  align-items: center;
+}      

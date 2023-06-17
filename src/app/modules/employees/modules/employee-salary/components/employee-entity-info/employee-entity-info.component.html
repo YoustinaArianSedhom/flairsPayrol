@@ -1,0 +1,227 @@
+<header class=" lg:flex lg:justify-between mb-3 grid grid-cols-2 items-center ">
+    <h2 class="col-span-2">Entities Info</h2>
+    <button
+        matTooltip="User Can Only Join 1 Entity for now"
+        matTooltipClass='red-tooltip'
+        [matTooltipPosition]="'above'"
+        (click)="onJoinEntity()"
+        class="float-right rounded-none actionBtn self-center col-span-2 mt-3 lg:mt-0"
+        mat-button
+        mat-flat-button
+        [ngClass]="{'disabled': entityInfo?.length}"
+    >
+        Join Employee to Entity
+    </button>
+    
+</header>
+
+<div class="responsiveFix grid gap-3">
+    <div *ngIf="entityInfo?.length; else notJoined" class="">
+        <div
+            *ngFor="let entity of entityInfo"
+            class="grid grid-cols-1 lg:grid-cols-2 3xl:grid-cols-3 gap-3"
+        >
+
+
+            <div class="bg-white gap-y-3 grid p-3 relative pt-10">
+                <div class="label current">
+                    Currently Joined
+                </div>
+                <header class="flex justify-end">
+                    <div
+                        matTooltip="Edit Entity Info"
+                        [matTooltipPosition]="'above'"
+                        (click)="onEntityUpdate(entity.entityId)"
+                        *ngIf="isEntityEditable"
+                        class="themeIcon  right-0 w-5 cursor-pointer"
+                        matRipple
+                        matRippleColor="red"
+                    >
+                        <img
+                            src="../../../../../../../assets/images/edit-button.svg"
+                            alt="edit"
+                            class
+                        >
+                    </div>
+                </header>
+                <div class="fieldGroup block lg:flex">
+                    <div class="info font-bold mr-2 ">Entity Name :</div>
+                    <div class="value">
+                        {{ entity.entityName ? entity.entityName : 'No Value'}}
+                    </div>
+                </div>
+
+
+                <div class="fieldGroup block lg:flex">
+                    <div class="info font-bold mr-2 ">Employee Type :</div>
+                    <div class="value">
+                        {{ entity.employeeTypeName ? entity.employeeTypeName : 'No Value'}}
+                    </div>
+                </div>
+
+
+                <div class="fieldGroup block lg:flex">
+                    <div class="info font-bold mr-2 ">Gross Salary :</div>
+                    <div class="value">
+                        {{ entity.monthlyGrossSalary ? (entity.monthlyGrossSalary | currency:'':'':'1.2') : 'No Value'}}
+                    </div>
+                </div>
+
+
+                <div class="fieldGroup block lg:flex">
+                    <div class="info font-bold mr-2 ">Net Salary :</div>
+                    <div class="value">
+                        {{ entity.monthlyNetSalary ? (entity.monthlyNetSalary | currency:'':'':'1.2') : 'No Value'}}
+                    </div>
+                </div>
+
+
+                <div class="fieldGroup block lg:flex">
+                    <div class="info font-bold mr-2 ">Social Insurance Amount :</div>
+                    <div class="value">
+                        {{ entity.monthlySocialInsuranceAmount ? (entity.monthlySocialInsuranceAmount | currency:'':'':'1.2') : 'No Value'}}
+                    </div>
+                </div>
+
+
+                <div class="fieldGroup block lg:flex">
+                    <div class="info font-bold mr-2 ">Personal Exemption Amount :</div>
+                    <div class="value">
+                        {{ entity.monthlyPersonalExemptionAmount ? (entity.monthlyPersonalExemptionAmount | currency:'':'':'1.2') : 'No Value'}}
+                    </div>
+                </div>
+
+
+                <div class="fieldGroup block lg:flex">
+                    <div class="info font-bold mr-2 ">Taxes :</div>
+                    <div class="value">
+                        {{ entity.monthlyTaxes ? (entity.monthlyTaxes | currency:'':'':'1.2') : 'No Value'}}
+                    </div>
+                </div>
+
+
+                <div class="fieldGroup block lg:flex">
+                    <div class="info font-bold mr-2 ">Entity Joining Date :</div>
+                    <div class="value">
+                        {{ entity.joinedDate ? (entity.joinedDate | date:'mediumDate' :'UTC') : 'No Value'}}
+                    </div>
+                </div>
+
+
+                <div *ngIf="entity.leftDate" class="fieldGroup block lg:flex">
+                    <div class="info font-bold mr-2 ">Left Date :</div>
+                    <div class="value">
+                        {{ entity.leftDate | date }}
+                    </div>
+                </div>
+
+                <div class="flex justify-end">
+                    <button
+                        *ngIf="isEntityEditable"
+                        (click)="onEntityLeave(entity.leftDate)"
+                        class="rounded-none actionBtn dismissEmployee"
+                        mat-button
+                        mat-flat-button
+                    >
+                        {{entity.leftDate ? 'Update Leave Date' : 'Leave Entity'}}
+                    </button>
+                    <!-- <button (click)="onEntityUpdate()" class="rounded-none actionBtn-2" mat-button mat-flat-button> update Entity </button> -->
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div *ngIf="entitiesHistory?.length" >
+        <div
+            *ngFor="let entity of entitiesHistory"
+            class="grid grid-cols-1 lg:grid-cols-2 3xl:grid-cols-3 gap-3 entitiesHistory my-3"
+        >
+
+
+            <div class="bg-gray-50 gap-y-3 grid p-3 relative pt-10">
+
+                <div class="label history">
+                    Joined Previously
+                </div>
+
+
+                <div class="fieldGroup block lg:flex">
+                    <div class="info font-bold mr-2 ">Entity Name :</div>
+                    <div class="value">
+                        {{ entity.entityName ? entity.entityName : 'No Value'}}
+                    </div>
+                </div>
+
+
+                <div class="fieldGroup block lg:flex">
+                    <div class="info font-bold mr-2 ">Employee Type :</div>
+                    <div class="value">
+                        {{ entity.employeeTypeName ? entity.employeeTypeName : 'No Value'}}
+                    </div>
+                </div>
+
+
+                <div class="fieldGroup block lg:flex">
+                    <div class="info font-bold mr-2 ">Gross Salary :</div>
+                    <div class="value">
+                        {{ entity.monthlyGrossSalary ? (entity.monthlyGrossSalary | currency:'':'':'1.2') : 'No Value'}}
+                    </div>
+                </div>
+
+
+                <div class="fieldGroup block lg:flex">
+                    <div class="info font-bold mr-2 ">Net Salary :</div>
+                    <div class="value">
+                        {{ entity.monthlyNetSalary ? (entity.monthlyNetSalary | currency:'':'':'1.2') : 'No Value'}}
+                    </div>
+                </div>
+
+
+                <div class="fieldGroup block lg:flex">
+                    <div class="info font-bold mr-2 ">Social Insurance Amount :</div>
+                    <div class="value">
+                        {{ entity.monthlySocialInsuranceAmount ? (entity.monthlySocialInsuranceAmount | currency:'':'':'1.2') : 'No Value'}}
+                    </div>
+                </div>
+
+
+                <div class="fieldGroup block lg:flex">
+                    <div class="info font-bold mr-2 ">Personal Exemption Amount :</div>
+                    <div class="value">
+                        {{ entity.monthlyPersonalExemptionAmount ? (entity.monthlyPersonalExemptionAmount | currency:'':'':'1.2') : 'No Value'}}
+                    </div>
+                </div>
+
+
+                <div class="fieldGroup block lg:flex">
+                    <div class="info font-bold mr-2 ">Taxes :</div>
+                    <div class="value">
+                        {{ entity.monthlyTaxes ? (entity.monthlyTaxes | currency:'':'':'1.2') : 'No Value'}}
+                    </div>
+                </div>
+
+                <div class="fieldGroup block lg:flex">
+                    <div class="info font-bold mr-2 ">Entity Joining Date :</div>
+                    <div class="value">
+                        {{ entity.joinedDate ? (entity.joinedDate | date:'mediumDate' :'UTC') : 'No Value'}}
+                    </div>
+                </div>
+
+
+                <div class="fieldGroup block lg:flex">
+                    <div class="info font-bold mr-2 ">Left Date :</div>
+                    <div class="value">
+                        {{ entity.leftDate ? (entity.leftDate | date) : 'No Value'}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #notJoined>
+    <div class="font-light h-52 align-center block lg:flex justify-center items-center">Employee is not joined to an Entity</div>
+</ng-template>

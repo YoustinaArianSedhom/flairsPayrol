@@ -1,0 +1,29 @@
+<h2>Payroll Info</h2>
+<div class="fieldGroup block 3xl:flex">
+    <div class="info font-bold mr-2 ">Salary Level Name: </div>
+    <div class="value">{{ payrollInfo.salaryLevelName ? payrollInfo.salaryLevelName : 'No Value'}}</div>
+</div>
+<div class="fieldGroup block 3xl:flex">
+    <div class="info font-bold mr-2 ">Gross Salary : </div>
+    <div class="value">{{ payrollInfo.totalMonthlyGrossSalary ? (payrollInfo.totalMonthlyGrossSalary | currency:'':'':'1.2') : 'No Value'}}</div>
+</div>
+<div class="fieldGroup block 3xl:flex">
+    <div class="info font-bold mr-2 ">Net Salary : </div>
+    <div class="value">{{ payrollInfo.totalMonthlyNetSalary ? ( payrollInfo.totalMonthlyNetSalary | currency:'':'':'1.2') : 'No Value'}}</div>
+</div>
+<div class="fieldGroup block 3xl:flex">
+    <div class="info font-bold mr-2 ">Social Insurance info : </div>
+    <div class="value">{{ payrollInfo.totalMonthlySocialInsuranceAmount ? (payrollInfo.totalMonthlySocialInsuranceAmount | currency:'':'':'1.2') : 'No Value'}}</div>
+</div>
+<div class="fieldGroup block 3xl:flex">
+    <div class="info font-bold mr-2 ">Tax : </div>
+    <div class="value">{{ payrollInfo.totalMonthlyTaxes ? ( payrollInfo.totalMonthlyTaxes | currency:'':'':'1.2') : 'No Value'}}</div>
+</div>
+<div class="fieldGroup block 3xl:flex" *ngIf="personalInfo?.isSalarySuspended">
+    <div class="info font-bold mr-2">Suspension Status : </div>
+    <div class="value">Suspended</div>
+</div>
+
+<div class="text-right mt-10" *ngIf="isPayroll && personalInfo.status === 1">
+    <button mat-flat-button class="actionBtn rounded-none" (click)="!personalInfo?.isSalarySuspended ? viewSuspendSalary(): viewUnSuspendSalary()">{{!personalInfo?.isSalarySuspended ? 'Suspend Salary' : 'Unsuspend Salary'}}</button>
+  </div>

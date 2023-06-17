@@ -1,0 +1,24 @@
+<ng-container *ngIf="(salaries$ | async)?.length; else noResult">
+
+
+
+    <!-- Table -->
+    <app-table-wrapper 
+    [records$]="salaries$" 
+    [config]="tableConfig" 
+    (actionTaken)="mapTableAction($event)" 
+    (sortChange)="sort($event)">
+    </app-table-wrapper>
+
+
+    <!-- Pagination -->
+    <app-pagination [config]="pagination$ | async" (paginationChange)="paginate($event)">
+    </app-pagination>
+
+</ng-container>
+
+
+<ng-template #noResult>
+    <app-no-result></app-no-result>
+</ng-template>
+

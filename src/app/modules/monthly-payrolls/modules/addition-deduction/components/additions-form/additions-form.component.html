@@ -1,0 +1,23 @@
+<app-form-modal>
+  <ng-container>
+      <h2 mat-dialog-title>Import addition</h2>
+      <mat-dialog-content class="mat-typography custom-scrolling">
+          <app-download-empty-template [link]="downloadTemplateLink"></app-download-empty-template>
+          <!-- upload Adapter for Additions -->
+          <app-addition-uploader-adapter
+              [payrollId]="_addition.payrollId"
+              (canBeImport)="canBeImport($event)">
+          </app-addition-uploader-adapter>
+            <!-- for Error Messages -->
+          <div class="errorWrapper" #backendError id="backendError">
+              <mat-error  class="w-full py-5 flex justify-center text-center" *ngIf="backendError">
+                  {{backendError.errorMessage}}
+              </mat-error>
+          </div>
+      </mat-dialog-content>
+      <mat-dialog-actions align="end">
+          <button mat-button mat-dialog-close class="cancelBtn rounded-none">Cancel</button>
+          <button mat-button cdkFocusInitial [disabled]="!enableSubmit" class="actionBtn rounded-none" (click)="submit()"> Apply Addition </button>
+      </mat-dialog-actions>
+  </ng-container>
+</app-form-modal>

@@ -1,0 +1,51 @@
+<app-inner-page-layout>
+  <ng-container>
+    <h1>{{ headInformation.title }}</h1>
+    <div class="text-right my-3">
+
+      <button mat-button mat-flat-button class="actionBtn rounded-none col-span-2  lg:mt-0"
+        (click)="fireExportProfilesHRDataToExcel()"> Export Data To Excel
+      </button>
+    </div>
+    <div class="w-full">
+      <div class="md:flex md:justify-between md:items-center bg-white px-5 pt-2 pb-3 mb-7 filterBox">
+        <div class="flex items-center flex-grow ">
+          <mat-icon class="text-gray-400">filter_alt</mat-icon>
+          <app-search-input class="flex-grow filterBox-search" placeholder="Search using name or email"
+            (searchChange)="fireFilterSearch($event)" [search]="query" [withResult]="false"></app-search-input>
+        </div>
+
+        <!-- Filters Wrapper -->
+        <div class="flex md:flex-nowrap flex-wrap justify-end items-baseline">
+
+          <app-basic-select class="w-44 px-3" [options]="managers" [emitPassedValue]="false"
+            (optionsChange)="fireFilterManager($event.value)" [withLabel]="true" [config]="HRManagersSelectConfig">
+          </app-basic-select>
+
+          <mat-form-field class="w-44">
+            <mat-label>Status</mat-label>
+            <mat-select (selectionChange)="filterStatuses($event.value)" multiple [formControl]="status">
+              <mat-option *ngFor="let status of statuses" [value]="status.id">{{status.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- <app-basic-select class="w-44 px-3" [options]="statuses" [emitPassedValue]="false"
+            (optionsChange)="filterStatuses($event.value)" [withLabel]="true" [config]="HRStatusesSelectConfig">
+          </app-basic-select> -->
+
+          <app-basic-select class="w-44 px-3" [options]="departments" [emitPassedValue]="false"
+            (optionsChange)="filterDepartments($event.value)" [withLabel]="true" [config]="HRDepartmentsSelectConfig">
+          </app-basic-select>
+          <button (click)="resetFilter()" mat-button color="warn" aria-label="Clear Filter">
+            Clear
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="innerWrapper bg-white w-full p-1 lg:p-5">
+      <!-- Table -->
+      <app-table-hr-data></app-table-hr-data>
+    </div>
+  </ng-container>
+
+</app-inner-page-layout>

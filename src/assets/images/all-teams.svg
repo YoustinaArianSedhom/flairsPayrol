@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="23.084" height="19.916" viewBox="0 0 23.084 19.916">
+  <g id="Group_47404" data-name="Group 47404" transform="translate(-1018.25 -373.901)">
+    <g id="Group_47403" data-name="Group 47403">
+      <path class="mainPath" id="Path_74072" data-name="Path 74072" d="M4.781-17.371a2.6,2.6,0,0,0,1.345-.364,2.741,2.741,0,0,0,.98-.98,2.6,2.6,0,0,0,.364-1.345,2.6,2.6,0,0,0-.364-1.345,2.741,2.741,0,0,0-.98-.98,2.6,2.6,0,0,0-1.345-.364,2.6,2.6,0,0,0-1.345.364,2.741,2.741,0,0,0-.98.98,2.6,2.6,0,0,0-.364,1.345,2.6,2.6,0,0,0,.364,1.345,2.741,2.741,0,0,0,.98.98A2.6,2.6,0,0,0,4.781-17.371Zm2.39.6H6.144a3.243,3.243,0,0,1-1.363.3,3.243,3.243,0,0,1-1.363-.3H2.39a2.37,2.37,0,0,0-1.2.317,2.326,2.326,0,0,0-.868.868A2.37,2.37,0,0,0,0-14.383v.3a.864.864,0,0,0,.261.635.864.864,0,0,0,.635.261H8.665A.864.864,0,0,0,9.3-13.45a.864.864,0,0,0,.261-.635v-.3a2.37,2.37,0,0,0-.317-1.2,2.326,2.326,0,0,0-.868-.868A2.37,2.37,0,0,0,7.171-16.774Z" transform="translate(1025.356 407.006)" fill="#373636"/>
+      <ellipse class="mainPath" id="Ellipse_160" data-name="Ellipse 160" cx="2.049" cy="2.049" rx="2.049" ry="2.049" transform="translate(1037.619 379.961) rotate(25)" fill="#373636"/>
+      <ellipse class="mainPath" id="Ellipse_163" data-name="Ellipse 163" cx="2.049" cy="2.05" rx="2.049" ry="2.05" transform="translate(1023.697 383.676) rotate(155)" fill="#373636"/>
+      <ellipse class="mainPath" id="Ellipse_162" data-name="Ellipse 162" cx="2.049" cy="2.049" rx="2.049" ry="2.049" transform="translate(1030.377 379.654) rotate(-142)" fill="#373636"/>
+      <rect class="mainPath" id="Rectangle_10274" data-name="Rectangle 10274" width="1.11" height="3.331" rx="0.555" transform="matrix(-0.438, -0.899, 0.899, -0.438, 1033.379, 386.065)" fill="#373636"/>
+      <rect class="mainPath" id="Rectangle_10277" data-name="Rectangle 10277" width="1.11" height="3.33" rx="0.555" transform="matrix(0.438, -0.899, 0.899, 0.438, 1023.214, 384.605)" fill="#373636"/>
+      <rect class="mainPath" id="Rectangle_10276" data-name="Rectangle 10276" width="1.11" height="3.33" rx="0.555" transform="translate(1029.553 379.673) rotate(-1)" fill="#373636"/>
+    </g>
+  </g>
+</svg>

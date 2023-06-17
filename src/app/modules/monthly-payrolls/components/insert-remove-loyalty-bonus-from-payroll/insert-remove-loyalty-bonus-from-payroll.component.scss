@@ -1,0 +1,7 @@
+:host ::ng-deep {
+
+    .mat-header-cell,
+    .mat-cell {
+        min-width: auto !important;
+    }
+}

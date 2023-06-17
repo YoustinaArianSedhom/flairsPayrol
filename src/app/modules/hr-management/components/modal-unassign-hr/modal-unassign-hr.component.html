@@ -1,0 +1,78 @@
+<app-form-modal>
+
+  <h1 mat-dialog-title>Remove HR Business Partner from a team</h1>
+
+  <mat-dialog-content>
+
+    <ng-container *ngIf="this.data.assignedTeams.length; else noTeamsToShow">
+
+
+
+
+      <form class="mt-5 w-full" [formGroup]="assignHrForm">
+
+        <div class="form-group items-center justify-center mb-4 w-full">
+
+
+          <div class="mb-4">
+
+
+            <mat-form-field class="w-full">
+
+
+              <mat-label>HR Name</mat-label>
+              <input readonly type="text" aria-label="Text" matInput formControlName="hrName" autocomplete="off"
+                type="text" matAutosize />
+            </mat-form-field>
+
+
+          </div>
+
+
+          <div class="mb-4">
+
+            <mat-form-field class="w-full">
+              <mat-label>Team Name</mat-label>
+
+              <mat-select formControlName="teamId" (selectionChange)="onTeamSelect($event.value)">
+                <mat-option *ngFor="let team of data.assignedTeams" [value]="team.id">{{team.name}}</mat-option>
+              </mat-select>
+
+            </mat-form-field>
+
+          </div>
+
+          <div class="mb-4">
+            <mat-form-field class="w-full">
+
+              <mat-label>Manager Name</mat-label>
+              <input readonly type="text" aria-label="Text" matInput formControlName="managerName" autocomplete="off"
+                type="text" matAutosize />
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+
+    </ng-container>
+
+
+    <ng-template #noTeamsToShow>
+      Please assign this HR to a team first
+    </ng-template>
+
+
+  </mat-dialog-content>
+
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close class="cancelBtn rounded-none" cdkFocusInitial>
+      Cancel
+    </button>
+    <button *ngIf="this.data.assignedTeams.length" mat-button (click)="submitAssignHrForm()"
+      [disabled]="assignHrForm.invalid" class="actionBtn rounded-none">
+      Unassign
+    </button>
+    <!-- <button mat-button mat-dialog-close>Close</button>
+  <button mat-raised-button color="warn">Save</button> -->
+  </mat-dialog-actions>
+</app-form-modal>

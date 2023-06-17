@@ -1,0 +1,202 @@
+<app-form-modal>
+    <ng-container>
+        <h2 mat-dialog-title>{{isUpdate ? 'Update Entity' : 'Add New Entity'}}</h2>
+        <mat-dialog-content class="mat-typography">
+            <form [formGroup]="entityForm">
+
+                <!--! entity name -->
+                <mat-form-field appearance="" class="w-full">
+                    <mat-label>Entity Name</mat-label>
+                    <input type="text" formControlName="name" placeholder="Entity Name" required matInput>
+                    <mat-error>
+                        <app-validation-error [control]="entityForm.get('name')" businessName="Entity Name">
+                        </app-validation-error>
+                    </mat-error>
+                </mat-form-field>
+              
+
+                <!--! entity country -->
+                <mat-form-field appearance="" class="w-full mb-3 " [ngClass]="{'disabled': true}">
+                    <mat-label>Country</mat-label>
+                    <mat-select formControlName="countryId">
+                      <mat-option *ngFor="let country of (countries$ | async)" [value]="country.id">{{country.name}}</mat-option>
+                      <!-- <mat-option [value]=0>Egypt</mat-option> -->
+                    </mat-select>
+                    <mat-error>
+                        <app-validation-error [control]="entityForm.get('countryId')" businessName="Entity Country">
+                        </app-validation-error>
+                    </mat-error>
+                </mat-form-field>
+
+                <!--! entity currency -->
+                <mat-form-field appearance="" class="w-full mb-3 " [ngClass]="{'disabled': true}">
+                    <mat-label>Currency</mat-label>
+                    <mat-select formControlName="currency" (selectionChange)="changeActiveCurrency($event)">
+                    <mat-option *ngFor="let currency of currencies | keyvalue" [value]="currency.value">{{currency.key}}</mat-option>
+                    </mat-select>
+                    <mat-error>
+                        <app-validation-error [control]="entityForm.get('currency')" businessName="Currency">
+                        </app-validation-error>
+                    </mat-error>
+                </mat-form-field>
+                <!--! entity currency -->
+                <!-- <mat-form-field appearance="" class="w-full mb-3" [ngClass]="{'disabled': isUpdate}">
+                    <mat-label>Currency</mat-label>
+                    <mat-select formControlName="currency" (selectionChange)="changeActiveCurrency($event)">
+                        <mat-option *ngFor="let currency of currencies" [value]="currency.id">{{currency.name}}</mat-option>
+                    </mat-select>
+                    <mat-error>
+                        <app-validation-error [control]="entityForm.get('currency')" businessName="Currency">
+                        </app-validation-error>
+                    </mat-error>
+                </mat-form-field> -->
+
+
+                <div class="wrapper w-full grid grid-cols-3 gap-x-5 p-4 bg-accent mb-3">
+                    <!--! Personal Exemption -->
+                    <mat-form-field appearance="" class="col-span-3">
+                        <mat-label>Personal Exemption (Yearly)</mat-label>
+                        <input type="number" formControlName="yearlyPersonalExemption" step="500"  placeholder="Personal Exemption" required matInput>
+                        <span matSuffix>{{selectedCurrency}}</span>
+                        <mat-error>
+                            <app-validation-error [control]="entityForm.get('yearlyPersonalExemption')" businessName="Personal Exemption">
+                            </app-validation-error>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <h5 class="col-span-3">Social insurance Configuration (Monthly)</h5>
+                    
+                    <!--! Minimum Salary for Social insurance -->
+                
+                    <mat-form-field appearance="" class="col-span-3 lg:col-span-1">
+                        <mat-label>Minimum Salary</mat-label>
+                        <input type="number" formControlName="monthlyMinimumGrossSalaryForSocialInsurance" placeholder="Minimum Salary for Social insurance" step="500" required matInput>
+                        <span matSuffix>{{selectedCurrency}}</span>
+                        <mat-error>
+                            <app-validation-error [control]="entityForm.get('monthlyMinimumGrossSalaryForSocialInsurance')" businessName="Minimum Salary for Social insurance">
+                            </app-validation-error>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!--! Maximum Salary for Social insurance -->
+                    <mat-form-field appearance="" class="col-span-3 lg:col-span-1">
+                        <mat-label>Maximum Salary</mat-label>
+                        <input type="number" formControlName="monthlyMaximumGrossSalaryForSocialInsurance" placeholder="Maximum Salary for Social insurance" step="500" required matInput>
+                        <span matSuffix>{{selectedCurrency}}</span>
+                        <mat-error>
+                            <app-validation-error [control]="entityForm.get('monthlyMaximumGrossSalaryForSocialInsurance')" businessName="Maximum Salary for Social insurance">
+                            </app-validation-error>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!--! Social insurance percentage -->
+                    <mat-form-field appearance="" class="col-span-3 lg:col-span-1">
+                        <mat-label>percentage</mat-label>
+                        <input type="number" formControlName="socialInsurancePercentage" min="0" max="100" placeholder="Social insurance percentage" required matInput>
+                        <span matSuffix>%</span>
+                        <mat-error>
+                            <app-validation-error [control]="entityForm.get('socialInsurancePercentage')" businessName="percentage">
+                            </app-validation-error>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-error class="col-span-3 lg:col-span-3 range-error" *ngIf="entityForm.errors?.rangeError">
+                        {{entityForm.errors?.rangeError}}
+                    </mat-error>
+
+                    <mat-checkbox class="col-span-3 lg:col-span-3 pt-4" *ngIf="isUpdate"
+                    formControlName="updateAlreadyJoinedProfiles"
+                    (change)="confirmChange($event)"
+                    >
+                    Apply these changed on all joined employees
+                    </mat-checkbox>
+
+                <!-- <h5 class="col-span-5">Personal Exemption</h5> -->
+              
+                
+
+                </div>
+
+                
+
+                
+
+                <!--! entity status -->
+
+                <mat-radio-group
+                    aria-label="Entity Status"
+                    formControlName="status"
+                    appearance=""
+                    class="mt-5 w-full">
+                    <mat-label class="col-span-1">Entity Status</mat-label>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  mt-3 pl-2">
+                        <mat-radio-button [value]=0 class="col-span-1"> Active </mat-radio-button>
+                        <mat-radio-button [value]=1 class="col-span-1"> Inactive </mat-radio-button>
+                    </div>
+                </mat-radio-group>
+                
+            </form>
+
+            <!-- <mat-error  class="w-full py-5 flex justify-center" *ngIf="backendError">
+                {{backendError.errorMessage}}
+                <li *ngFor="let error of backendError.errors">
+                    {{error}}
+                </li>
+            </mat-error> -->
+
+            <div class="w-full bg-red-500 text-white mt-5" *ngIf="backendError">
+                <div class=" justify-between items-center container mx-auto py-2 px-6">
+                    <div class="flex items-center">
+                        <svg viewBox="0 0 40 40" class="w-6 fill-current">
+                            <path
+                                d="M20 3.36667C10.8167 3.36667 3.3667 10.8167 3.3667 20C3.3667 29.1833 10.8167 36.6333 20 36.6333C29.1834 36.6333 36.6334 29.1833 36.6334 20C36.6334 10.8167 29.1834 3.36667 20 3.36667ZM19.1334 33.3333V22.9H13.3334L21.6667 6.66667V17.1H27.25L19.1334 33.3333Z">
+                            </path>
+                        </svg>
+                        <span class="mx-3 backendError" *ngIf="backendError.errorMessage">{{backendError.errorMessage}}</span>
+                    </div>
+                    <div *ngIf="backendError.errors">
+                        <li *ngFor="let error of backendError.errors">
+                            {{error}}
+                        </li>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="w-full bg-red-500 text-white mt-5" *ngIf="backendError?.errorMessage">
+                <div class="flex justify-between items-center container mx-auto py-2 px-6">
+                    <div class="flex">
+                        <svg viewBox="0 0 40 40" class="h-6 w-6 fill-current">
+                            <path d="M20 3.36667C10.8167 3.36667 3.3667 10.8167 3.3667 20C3.3667 29.1833 10.8167 36.6333 20 36.6333C29.1834 36.6333 36.6334 29.1833 36.6334 20C36.6334 10.8167 29.1834 3.36667 20 3.36667ZM19.1334 33.3333V22.9H13.3334L21.6667 6.66667V17.1H27.25L19.1334 33.3333Z"></path>
+                        </svg>
+                        <span class="mx-3 backendError">{{backendError.errorMessage}}</span>
+                    </div>
+                </div>
+            </div> -->
+            
+        </mat-dialog-content>
+        <mat-dialog-actions align="end" >
+            <button mat-button mat-dialog-close class="cancelBtn rounded-none">Cancel</button>
+            <button mat-button cdkFocusInitial [disabled]="entityForm.invalid" class="actionBtn rounded-none" (click)="submit()"> {{isUpdate ? 'Update' : 'Add'}} </button>
+        </mat-dialog-actions>
+    </ng-container>
+</app-form-modal>
+
+
+<!-- <h2 mat-dialog-title>Add New Entity</h2>
+        <mat-dialog-content class="mat-typography">
+            <form [formGroup]="entityForm">
+                <mat-form-field appearance="outline" class="w-full">
+                    <mat-label>Entity Name title</mat-label>
+                    <input type="text" formControlName="name" placeholder="Entity Name" required matInput>
+                    <mat-error>
+                        <app-validation-error [control]="entityForm.get('name')" businessName="Entity Name">
+                        </app-validation-error>
+                    </mat-error>
+                </mat-form-field>
+            </form>
+            
+        </mat-dialog-content>
+        <mat-dialog-actions align="end">
+            <button mat-button mat-dialog-close>Cancel</button>
+            <button mat-button cdkFocusInitial [disabled]="entityForm.invalid" class="actionBtn rounded-none" (click)="submit()"> Create Entity </button>
+        </mat-dialog-actions>
+     -->

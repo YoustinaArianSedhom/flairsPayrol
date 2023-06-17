@@ -1,0 +1,28 @@
+<app-form-modal>
+    <ng-container
+        *ngIf="(data.action === 'insert' && (profileShouldApplied$|async)?.length) || (data.action === 'remove' && (profileShouldRemovedFromApplied$|async)?.length); else noResult">
+        <h2 mat-dialog-title class="text-red-500">Loyalty Bonus</h2>
+        <hr>
+        <app-table-wrapper
+            [records$]="data.action === 'insert' ? profileShouldApplied$ : profileShouldRemovedFromApplied$"
+            [config]="tableConfig" (checkboxChange)="fireSelectAll($event)" (actionTaken)='mapTableAction($event)'
+            [check]="allSelected"
+            [classes]="(profileShouldApplied$|async)?.length > 10 || (profileShouldRemovedFromApplied$|async)?.length > 10 ? 'custom-scrolling': 'no-scroll'">
+        </app-table-wrapper>
+
+        <app-pagination
+            [config]="data.action === 'insert' ? profileShouldAppliedPagination : profileShouldRemovedFromAppliedPagination"
+            (paginationChange)="paginateLoyaltyPage($event)">
+        </app-pagination>
+        <mat-dialog-actions align="end">
+            <button mat-button mat-dialog-close class="cancelBtn rounded-none" (click)="onClose()"> Cancel </button>
+            <button mat-button class="actionBtn rounded-none" [disabled]="applyAndRemoveLoyaltyArr.length === 0"
+                (click)="data.action === 'insert' ? onInsertInPayroll() : onRemoveFromPayroll()"> {{data.action ===
+                'insert' ? 'Insert in Payroll' : 'Delete from Payroll'}}</button>
+        </mat-dialog-actions>
+    </ng-container>
+    <!-- No Result Template -->
+<ng-template #noResult>
+    <app-no-result></app-no-result>
+</ng-template>
+</app-form-modal>

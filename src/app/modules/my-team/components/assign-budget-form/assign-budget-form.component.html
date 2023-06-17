@@ -1,0 +1,26 @@
+<app-form-modal>
+   <h2 mat-dialog-title class="text-primary border-b-2 pb-2">Monthly Budget</h2>
+   <mat-dialog-content class="mat-typography custom-scrolling">
+      <h2>{{data.profileName}}'s Monthly Assigned Budget</h2>
+      <div class="pb-2">
+         <span class="text-red-500">
+            Total Assigned Budget
+            <span class="font-bold" >
+               {{totalBudget| currency: "":"":"1.1-2" }}
+            </span> 
+         </span>
+      </div>
+      <div class="flex flex-wrap w-full justify-between">
+         <mat-form-field *ngFor="let item of itemDetails" class="form-width mr-3">
+            <mat-label>{{item?.budgetItemTypeName}}</mat-label>
+            <input matInput type="number" [value]="item?.budgetItemLimit" [placeholder]="item?.budgetItemTypeName" (input)="onValueChange($event.target, item)">
+         </mat-form-field>
+      </div>
+      <span class="text-red-500 font-bold">Updates will be applied from next month</span>
+
+   </mat-dialog-content>
+   <mat-dialog-actions align="end">
+      <button mat-button class="cancelBtn rounded-none" mat-dialog-close>Cancel</button>
+        <button mat-button class="actionBtn rounded-none" cdkFocusInitial [disabled]="errorValidation" (click)="submit()">submit</button>
+   </mat-dialog-actions>
+</app-form-modal>
